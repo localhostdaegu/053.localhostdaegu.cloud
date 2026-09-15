@@ -6,7 +6,7 @@
 - **트랙:** 소상공인·골목상권 디지털 금융
 - **후보 기능:** 세무·매출 AI 도우미, 청년창업 매칭, 골목상권 AI 컨설팅
 - **상태:** 사이트 초안. MVP 범위·역할·서비스명은 미정.
-- **예정 도메인:** `https://053.localhostdaegu.cloud` — 이 초안에서 공개 배포는 수행하지 않습니다.
+- **사이트 주소:** `https://053.localhostdaegu.cloud`
 
 ## 로컬 실행
 
@@ -24,6 +24,19 @@ bundle exec jekyll build --trace
 ```
 
 정적 결과는 `_site/`에 생성됩니다. 게시 전 도메인·호스팅 환경·공식 제출 정보를 확인합니다.
+
+## GitHub Pages 배포
+
+`.github/workflows/pages.yml`이 `main` 푸시 또는 수동 실행 시 사이트를 배포합니다.
+
+1. Ruby 3.4를 준비하고 Gemfile 의존성을 설치합니다.
+2. 저장소에 설정된 Pages 도메인과 경로를 읽습니다.
+3. production 모드로 Jekyll을 빌드하고 주요 결과 파일을 확인합니다.
+4. `_site/`를 업로드한 뒤 기존 `github-pages` 환경으로 배포합니다.
+
+저장소의 Pages 소스는 **GitHub Actions**, 사용자 지정 도메인은 **053.localhostdaegu.cloud**로 설정되어 있습니다. `_config.yml`의 `url`만 지정하는 것으로는 배포되지 않으며, 이 워크플로의 성공 여부를 확인해야 합니다.
+
+수동 재배포는 저장소 **Actions → Deploy Jekyll to GitHub Pages → Run workflow**에서 실행합니다. 의존성 락 파일은 현재 저장소의 `.gitignore` 규칙에 따라 추적하지 않습니다.
 
 ## 파일 구성
 
