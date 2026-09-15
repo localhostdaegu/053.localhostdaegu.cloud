@@ -1,0 +1,18 @@
+---
+layout: document
+title: 진행 현황
+nav_order: 3
+permalink: /progress/
+description: 이번 단계의 목표와 다음 마일스톤, 함께 결정할 작업을 확인합니다.
+status: 기획·범위 검토
+---
+<div class="notice"><strong>이번 단계의 목표</strong><br>세 후보 기능 중 대표 사용자 시나리오와 첫 구현 범위를 정합니다. 역할 분담 전이므로 작업 담당은 모두 미배정입니다.</div>
+<h2>9월 — 10월 로드맵</h2>
+<div class="timeline">{% for item in site.data.project.milestones %}<div class="timeline-item"><div class="timeline-date">{{ item.date }}</div><div class="timeline-body"><h3>{{ item.title }}</h3><span class="status-pill">{{ item.kind }}</span><p>{{ item.description }}</p></div></div>{% endfor %}</div>
+<h2>팀 작업 보드</h2>
+<p>완료 조건을 충족한 작업만 완료로 옮깁니다. 현재는 기획 작업을 논의하는 단계입니다.</p>
+<div class="board">
+{% assign columns = '논의 중,예정,완료' | split: ',' %}
+{% for column in columns %}{% assign tasks = site.data.tasks | where: 'status', column %}<section class="board-column"><h3>{{ column }} <span>{{ tasks.size }}</span></h3>{% for task in tasks %}<article class="task-card"><span class="task-id">{{ task.id }}</span><a href="{{ task.url | relative_url }}">{{ task.title }}</a><p>{{ task.output }}</p><span class="task-owner">담당 {{ task.assignee }}</span></article>{% else %}<p class="board-empty">아직 완료로 등록한 작업이 없습니다.</p>{% endfor %}</section>{% endfor %}
+</div>
+<p><a href="{{ '/docs/milestones/' | relative_url }}">WBS와 완료 조건 →</a> · <a href="{{ '/decisions/' | relative_url }}">미결·결정 기록 →</a></p>

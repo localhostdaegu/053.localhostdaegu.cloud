@@ -1,0 +1,8 @@
+---
+layout: default
+---
+<p class="eyebrow">DEVELOPMENT JOURNAL</p>
+<h1>{{ page.title }}</h1>
+<div class="doc-meta"><span>{{ page.date | date: '%Y.%m.%d' }}</span><span>{{ page.author }}</span><span class="status-pill">{{ page.category | default: '개발 기록' }}</span></div>
+{{ content }}
+<p class="back-link"><a href="{{ '/journal/' | relative_url }}">← 전체 개발 기록</a></p>

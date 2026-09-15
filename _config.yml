@@ -1,0 +1,55 @@
+title: beyondbob
+description: 대구 소상공인·골목상권을 위한 AI 프로젝트. beyondbob의 기획, 설계, 검증과 개발 기록.
+url: "https://053.localhostdaegu.cloud"
+baseurl: ""
+lang: ko
+timezone: Asia/Seoul
+theme: just-the-docs
+color_scheme: light
+permalink: /journal/:year/:month/:day/:title/
+
+search_enabled: true
+search:
+  heading_level: 3
+  previews: 3
+  rel_url: false
+  button: false
+  tokenizer_separator: '/[\s\-/·]+/'
+heading_anchors: true
+back_to_top: true
+back_to_top_text: 맨 위로
+enable_copy_code_button: true
+last_edit_timestamp: false
+aux_links:
+  "대회 공식 안내 ↗":
+    - "https://www.im-challenge.com/"
+
+plugins:
+  - jekyll-feed
+  - jekyll-sitemap
+
+defaults:
+  - scope:
+      path: ""
+    values:
+      layout: default
+      has_toc: false
+  - scope:
+      path: ""
+      type: posts
+    values:
+      layout: post
+      nav_exclude: true
+      author: beyondbob
+
+exclude:
+  - Gemfile
+  - Gemfile.lock
+  - README.md
+  - vendor
+  - node_modules
+  - docs/superpowers
+  - 2026_AI_Blockchain_Challenge_Daegu.md
+  - jekyll.md
+  - "*.png"
+  - LICENSE

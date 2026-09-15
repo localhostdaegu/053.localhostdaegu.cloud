@@ -1,0 +1,35 @@
+- number: "01"
+  title: Milestone & WBS
+  description: 언제, 무엇을, 어떤 완료 조건으로 만들 것인가
+  url: /docs/milestones/
+  status: 초안
+- number: "02"
+  title: 요구사항 정의서
+  description: 사용자 문제를 기능과 검증 가능한 조건으로
+  url: /docs/requirements/
+  status: 검토안
+- number: "03"
+  title: 상위 설계서
+  description: 모듈, 데이터 흐름, AI와 외부 서비스의 연결
+  url: /docs/architecture/
+  status: 검토안
+- number: "04"
+  title: 상세 설계서
+  description: 실제 구현을 근거로 남기는 동작과 인터페이스
+  url: /docs/detailed-design/
+  status: 작성 틀
+- number: "05"
+  title: 시나리오 테스트
+  description: 단위부터 통합까지, 기대 결과와 실측 근거
+  url: /docs/testing/
+  status: 계획안
+- number: "5.1"
+  title: 최종 검수
+  description: 설치, 설정, 환경 이전과 유지보수
+  url: /docs/acceptance/
+  status: 작성 틀
+- number: "06"
+  title: 출품 시나리오
+  description: 문제에서 데모까지 이어지는 발표의 흐름
+  url: /showcase/
+  status: 구성안

@@ -1,0 +1,42 @@
+- id: WBS-001
+  title: 핵심 사용자와 대표 시나리오 선정
+  status: 논의 중
+  assignee: 미배정
+  output: 사용자 1명 유형과 대표 질문 1개
+  url: /docs/overview/
+- id: WBS-002
+  title: 세 가지 후보 기능의 MVP 범위 결정
+  status: 논의 중
+  assignee: 미배정
+  output: 필수·확장·제외 범위를 담은 요구사항
+  url: /docs/requirements/
+- id: WBS-003
+  title: 데이터 출처와 사용 조건 확인
+  status: 예정
+  assignee: 미배정
+  output: 실제 접근 가능한 데이터와 샘플
+  url: /docs/architecture/
+- id: WBS-004
+  title: 모듈 흐름과 AI 연동 방식 확정
+  status: 예정
+  assignee: 미배정
+  output: 입력·출력·예외를 설명하는 흐름도
+  url: /docs/architecture/
+- id: WBS-005
+  title: 핵심 시나리오 프로토타입 구현
+  status: 예정
+  assignee: 미배정
+  output: 대표 입력으로 실행 가능한 기능
+  url: /docs/detailed-design/
+- id: WBS-006
+  title: 정상·오류 시나리오 검증
+  status: 예정
+  assignee: 미배정
+  output: 재현 절차와 실제 결과가 있는 테스트 기록
+  url: /docs/testing/
+- id: WBS-007
+  title: 제안요약서와 접수 자료 준비
+  status: 예정
+  assignee: 미배정
+  output: 제출 파일 및 접수 완료 확인
+  url: /showcase/

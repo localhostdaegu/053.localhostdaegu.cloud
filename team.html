@@ -1,0 +1,14 @@
+---
+layout: document
+title: 팀 beyondbob
+nav_order: 7
+permalink: /team/
+eyebrow: THE PEOPLE BEHIND THE PROJECT
+description: 작은 가게와 새로운 시작을 위한 문제를 함께 찾고 만드는 세 사람입니다.
+status: 팀 구성 확정 · 역할 미정
+---
+<div class="team-grid">{% for member in site.data.team %}<article class="member-card"><div class="member-avatar" aria-hidden="true">{{ member.initials }}</div><h2>{{ member.name }}</h2><span class="status-pill">{{ member.role }}</span><p>{{ member.description }}</p><small>{{ member.profile_status }}</small>{% if member.bio %}<p>{{ member.bio }}</p>{% endif %}{% if member.github %}<p><a href="{{ member.github | escape }}">GitHub ↗</a></p>{% endif %}</article>{% endfor %}</div>
+<h2>함께 정할 역할</h2>
+<p>기획·데이터·AI·백엔드·프론트엔드·인프라·검증·발표 등 필요한 작업을 먼저 정리한 뒤 담당을 논의합니다. 현재 특정 역할을 팀원에게 배정하지 않았습니다.</p>
+<h2>우리의 기록 방식</h2>
+<ul><li>결정에는 이유와 영향을 함께 남깁니다.</li><li>구현한 내용과 계획을 구분합니다.</li><li>검증 결과에는 환경과 근거를 연결합니다.</li><li>프로필과 역할이 정해지면 이 페이지에 반영합니다.</li></ul>

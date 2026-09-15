@@ -1,0 +1,8 @@
+---
+layout: default
+---
+<p class="eyebrow">{{ page.eyebrow | default: 'PROJECT DOCUMENTATION' }}</p>
+<h1>{{ page.title }}</h1>
+{% include doc-meta.html %}
+{% if page.description %}<p class="page-lead">{{ page.description }}</p>{% endif %}
+{{ content }}

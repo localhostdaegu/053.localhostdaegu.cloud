@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 540" role="img" aria-labelledby="title desc">
+  <title id="title">beyondbob 모듈별 데이터 흐름 — 설계 검토안</title>
+  <desc id="desc">사용자 입력을 공통 모듈이 검증한 뒤 선택한 세무·매출, 창업 매칭, 상권 컨설팅 모듈에서 처리합니다. 데이터 조회와 AI 설명을 거쳐 출처와 함께 결과를 반환합니다. 실제 구현 범위는 미정입니다.</desc>
+  <defs><marker id="arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0 0 10 5 0 10Z" fill="#80998b"/></marker></defs>
+  <style>text{font-family:"Noto Sans KR",sans-serif;fill:#304d40} .label{font-size:14px;font-weight:600} .small{font-size:11px;fill:#667e70} .edge{fill:none;stroke:#80998b;stroke-width:1.6;marker-end:url(#arrow)} .box{stroke-width:1.2}</style>
+  <rect width="900" height="540" fill="#fff"/>
+  <text x="24" y="28" class="small" style="letter-spacing:2px">MODULE FLOW / CONCEPT DRAFT</text>
+  <rect class="box" x="60" y="55" width="230" height="66" rx="9" fill="#f3f5f0" stroke="#d3ded2"/>
+  <text class="label" x="175" y="81" text-anchor="middle">사용자 · 점주 · 예비 창업자</text><text class="small" x="175" y="103" text-anchor="middle">질문 / 조건 / 샘플 자료</text>
+  <path class="edge" d="M290 88H442"/><text class="small" x="365" y="75" text-anchor="middle">요청 전달</text>
+  <rect class="box" x="450" y="55" width="350" height="66" rx="9" fill="#f1f4f2" stroke="#cad7cd"/>
+  <text class="label" x="625" y="81" text-anchor="middle">M0 · 공통 입력 검증</text><text class="small" x="625" y="103" text-anchor="middle">필수 항목 · 지원 범위 확인</text>
+  <path class="edge" d="M625 121V154H175V191"/><path class="edge" d="M625 121V154H450V191"/><path class="edge" d="M625 121V154H725V191"/>
+  <text class="small" x="450" y="178" text-anchor="middle">선정한 기능으로 분기 · 세 기능의 구현 범위 미정</text>
+  <rect class="box" x="60" y="200" width="230" height="83" rx="9" fill="#e8f4ed" stroke="#80bba1"/>
+  <text class="label" x="175" y="230" text-anchor="middle">M1 · 세무·매출</text><text class="small" x="175" y="255" text-anchor="middle">자료 요약 / 집계 / 확인 항목</text>
+  <rect class="box" x="335" y="200" width="230" height="83" rx="9" fill="#f0ebf7" stroke="#b7a3cf"/>
+  <text class="label" x="450" y="230" text-anchor="middle">M2 · 청년창업 매칭</text><text class="small" x="450" y="255" text-anchor="middle">조건 확인 / 후보 정보 / 매칭 이유</text>
+  <rect class="box" x="610" y="200" width="230" height="83" rx="9" fill="#f8f1e4" stroke="#d6b878"/>
+  <text class="label" x="725" y="230" text-anchor="middle">M3 · 골목상권 컨설팅</text><text class="small" x="725" y="255" text-anchor="middle">지역 지표 / 해설 / 실행 제안</text>
+  <path class="edge" d="M175 283V316H385V348"/><path class="edge" d="M450 283V348"/><path class="edge" d="M725 283V316H515V348"/>
+  <text class="small" x="450" y="339" text-anchor="middle">자료 조회 · 분석 결과 · 설명 요청</text>
+  <rect class="box" x="150" y="357" width="600" height="70" rx="9" fill="#eaf0f4" stroke="#9db5c9"/>
+  <text class="label" x="450" y="385" text-anchor="middle">M4 · 데이터 조회 / 기능 처리 / 필요한 경우 AI 추론</text><text class="small" x="450" y="408" text-anchor="middle">출처와 버전 기록 · API 실패 / 근거 부족 처리</text>
+  <path class="edge" d="M450 427V465"/><text class="small" x="468" y="449">결과 + 근거 반환</text>
+  <rect class="box" x="150" y="474" width="600" height="45" rx="9" fill="#f3f5f0" stroke="#d3ded2"/>
+  <text class="label" x="450" y="502" text-anchor="middle">사용자에게 결과 · 출처 · 기준일 · 미확인 사항 표시</text>
+</svg>

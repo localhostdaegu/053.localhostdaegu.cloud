@@ -1,0 +1,10 @@
+---
+layout: document
+title: 개발 기록
+nav_order: 5
+permalink: /journal/
+description: 무엇을 만들었는지, 왜 그렇게 선택했는지, 무엇을 확인했는지 기록합니다.
+status: 팀 개발 일지
+---
+<div class="notice">기록은 최신순으로 표시합니다. 구현 결과, 실험, 회고와 함께 남은 문제도 기록합니다.</div>
+{% for post in site.posts %}<article class="journal-entry"><time datetime="{{ post.date | date_to_xmlschema }}">{{ post.date | date: '%Y.%m.%d' }}</time> <span class="status-pill">{{ post.category }}</span><h2><a href="{{ post.url | relative_url }}">{{ post.title }}</a></h2><p>{{ post.description }}</p><a class="small-link" href="{{ post.url | relative_url }}">기록 읽기 →</a></article>{% endfor %}

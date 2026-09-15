@@ -1,0 +1,33 @@
+# 1. 빌드 결과물 (가장 중요한 차단 대상)
+# Jekyll이 마크다운 등을 변환하여 생성한 최종 HTML/CSS 폴더입니다.
+_site/
+
+# 2. Jekyll 빌드 캐시
+.jekyll-cache/
+.jekyll-metadata
+
+# 3. 젬(Gem) 의존성 라이브러리 및 락 파일
+.bundle/
+vendor/
+Gemfile.lock
+
+# 4. 루비 캐시 및 Sass 빌드 캐시
+.sass-cache/
+
+# 5. Node.js 의존성 (테마 빌드 도구 등 사용 시)
+node_modules/
+npm-debug.log*
+
+# 6. 환경 변수 및 비밀 값
+.env
+.env.*
+
+# 7. OS가 자동 생성하는 파일
+.DS_Store
+Thumbs.db
+
+# 8. 에디터 설정 파일
+.idea/
+.vscode/
+*.swp
+*.swo
