@@ -6,6 +6,7 @@ nav_order: 8
 permalink: /docs/acceptance/
 description: 실제 환경에서 설치·동작·예외 처리·유지보수 절차를 확인합니다.
 status: 검수 기록 틀 · 미실행
+updated: "2026-09-15"
 ---
 
 ## 검수 기준

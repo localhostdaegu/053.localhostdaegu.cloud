@@ -6,6 +6,7 @@ nav_order: 6
 permalink: /docs/detailed-design/
 description: 구현이 진행된 뒤 실제 코드와 동작을 근거로 채우는 상세 설계 기록입니다.
 status: 구현 후 작성할 틀
+updated: "2026-09-15"
 ---
 
 <div class="notice"><strong>현재 상태: 구현 근거 등록 전</strong><br>상위 설계의 계획을 완료된 구현으로 옮겨 적지 않습니다. 구현된 기능부터 코드 경로·버전·실제 동작을 확인해 기록합니다.</div>

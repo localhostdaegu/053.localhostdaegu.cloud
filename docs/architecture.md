@@ -6,6 +6,7 @@ nav_order: 5
 permalink: /docs/architecture/
 description: 모듈과 데이터 흐름을 먼저 정의하고, 구현 범위가 정해지면 기술 선택을 구체화합니다.
 status: 구조 검토안
+updated: "2026-09-15"
 ---
 
 ## 개발 개요

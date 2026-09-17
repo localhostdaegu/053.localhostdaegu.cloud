@@ -6,6 +6,7 @@ nav_order: 2
 permalink: /docs/hackathon/
 description: 2026 AI Blockchain Challenge in Daegu에 소상공인·골목상권 디지털 금융 트랙으로 참가를 준비합니다.
 status: 안내 정리
+updated: "2026-09-15"
 ---
 
 ## 대회와 참가 방향

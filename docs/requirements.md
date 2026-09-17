@@ -6,6 +6,7 @@ nav_order: 4
 permalink: /docs/requirements/
 description: 세 후보 기능을 사용자 관점의 요구사항과 확인 가능한 결과로 정리합니다.
 status: 기능 검토안
+updated: "2026-09-15"
 ---
 
 <div class="notice"><strong>범위 검토 중</strong><br>아래 요구사항은 세 후보 기능을 논의하기 위한 초안입니다. 우선순위, 지원 데이터 형식, 외부 연동, 수치 기준은 아직 확정하지 않았습니다.</div>

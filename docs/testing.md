@@ -6,6 +6,7 @@ nav_order: 7
 permalink: /docs/testing/
 description: 정상 동작, 예외 처리, AI 결과 품질과 성능을 재현 가능한 방법으로 확인합니다.
 status: 테스트 계획안 · 미실행
+updated: "2026-09-15"
 ---
 
 ## 테스트 범위와 개발 아키텍처

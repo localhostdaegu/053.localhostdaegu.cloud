@@ -1,42 +1,108 @@
 - id: WBS-001
   title: 핵심 사용자와 대표 시나리오 선정
-  status: 논의 중
-  assignee: 미배정
-  output: 사용자 1명 유형과 대표 질문 1개
-  url: /docs/overview/
+  status: 완료
+  assignee: 팀 공동
+  output: "예비 창업자의 한 문장 질문(지역·업종·예산)에서 부족 자금과 금융상품까지 이어지는 대표 시나리오"
+  url: /journal/2026/09/16/daegu-data-funnel/
 - id: WBS-002
-  title: 세 가지 후보 기능의 MVP 범위 결정
-  status: 논의 중
-  assignee: 미배정
-  output: 필수·확장·제외 범위를 담은 요구사항
-  url: /docs/requirements/
+  title: MVP 범위 결정
+  status: 완료
+  assignee: 팀 공동
+  output: "창업 금융 네비게이터(AI 중심) 확정, 블록체인 리포트 기록은 여력 시 선택 항목"
+  url: /decisions/
 - id: WBS-003
   title: 데이터 출처와 사용 조건 확인
-  status: 예정
-  assignee: 미배정
-  output: 실제 접근 가능한 데이터와 샘플
-  url: /docs/architecture/
+  status: 완료
+  assignee: 팀 공동
+  output: "공공데이터 수집·정기 실행(인허가 161,115건 등). 센터 민간데이터는 미확보로 별도 작업"
+  url: /journal/2026/09/16/daegu-data-funnel/
 - id: WBS-004
   title: 모듈 흐름과 AI 연동 방식 확정
-  status: 예정
-  assignee: 미배정
-  output: 입력·출력·예외를 설명하는 흐름도
-  url: /docs/architecture/
+  status: 완료
+  assignee: 팀 공동
+  output: "계산은 코드, 해석은 AI(Gemini)가 맡는 섹션별 실시간 리포트 구조"
+  url: /journal/2026/09/17/ai-report-data-check/
 - id: WBS-005
   title: 핵심 시나리오 프로토타입 구현
-  status: 예정
-  assignee: 미배정
-  output: 대표 입력으로 실행 가능한 기능
-  url: /docs/detailed-design/
+  status: 완료
+  assignee: 팀 공동
+  output: "실제 백엔드로 질문 → 지도·진단 → 시뮬레이션 → 결론 → AI 리포트 완주"
+  url: /journal/2026/09/17/ai-report-data-check/
 - id: WBS-006
   title: 정상·오류 시나리오 검증
+  status: 완료
+  assignee: 팀 공동
+  output: "백엔드 334 통과·프론트엔드 96/96, 깔때기·AI 분석 E2E 통과(분석의 실효성 검증은 WBS-013)"
+  url: /journal/2026/09/18/final-review-team-split/
+- id: WBS-008
+  title: 백엔드 최종 리뷰와 main 병합
+  status: 완료
+  assignee: 팀 공동
+  output: "3개 영역 리뷰 Critical 0, 수정 3그룹 재리뷰 통과 후 main 병합"
+  url: /journal/2026/09/18/final-review-team-split/
+- id: WBS-009
+  title: API 계약·배포 구조 확정
   status: 예정
-  assignee: 미배정
-  output: 재현 절차와 실제 결과가 있는 테스트 기록
-  url: /docs/testing/
+  assignee: 장민석
+  output: "분석 요청 연도, 재무 계산 가정, 지표 분모·기간·건수 필드와 배포 구성 합의"
+  url: /decisions/
+- id: WBS-010
+  title: "① 기간 일치"
+  status: 예정
+  assignee: 김충식
+  output: "지도에서 고른 연도가 요약·위험도·AI 분석까지 같은 기준으로 반영"
+  url: /progress/
+- id: WBS-011
+  title: "② AI 진행 표시"
+  status: 예정
+  assignee: 김충식
+  output: "입력 확인 → 주변 현황 → 자금 계산 → 상담 후보처럼 실제 수행 작업으로 진행 안내"
+  url: /progress/
+- id: WBS-012
+  title: "③ 자금 점검 동선·계산 가정 표시"
+  status: 예정
+  assignee: 류준
+  output: "예산 점검을 주 동선으로 두고 6개월 고정비·시나리오 배수 등 가정을 화면에 표시"
+  url: /progress/
+- id: WBS-013
+  title: "④ 데이터 신뢰 표시"
+  status: 예정
+  assignee: 류준
+  output: "카페 단기 개폐업 검증과 지표별 분모·기간·건수·해석 문구 표시"
+  url: /progress/
+- id: WBS-014
+  title: "⑤ localhostdaegu.cloud 배포"
+  status: 예정
+  assignee: "김충식(BE) · 류준(FE)"
+  output: "배포 주소에서 전체 흐름과 AI 리포트 실시간 전송 확인, 9/19 18:00 코드 프리즈"
+  url: /showcase/
+- id: WBS-015
+  title: "⑦ 시연 영상"
+  status: 예정
+  assignee: "김충식(대본 장민석)"
+  output: "계획 입력 → 결과 이해 → 월세·투자비 변경 비교까지 보여주는 영상"
+  url: /showcase/
 - id: WBS-007
   title: 제안요약서와 접수 자료 준비
   status: 예정
-  assignee: 미배정
-  output: 제출 파일 및 접수 완료 확인
+  assignee: 장민석
+  output: "참가신청서(초안 있음)·서약서·개인정보 동의서·제안요약서 제출과 9/20 접수 완료 확인"
   url: /showcase/
+- id: WBS-016
+  title: "⑥ 공공데이터 적재(여력 시)"
+  status: 예정
+  assignee: 류준
+  output: "전통시장(브이월드 API)·나들가게(파일) 적재, 나머지 3종은 마감 후"
+  url: /journal/2026/09/18/final-review-team-split/
+- id: WBS-017
+  title: 대구 빅데이터활용센터 데이터 이용·반출 조건 확인
+  status: 논의 중
+  assignee: 미배정
+  output: "이용 신청·반출 심사·허용 집계 단위·서비스 공개 범위를 문서로 확인. 마감 전 확보를 전제하지 않음"
+  url: /decisions/
+- id: WBS-018
+  title: 로그에 기록된 외부 API 키 재발급
+  status: 예정
+  assignee: 미배정
+  output: "키 재발급·교체 후 다음 정기 수집에서 정상 동작 확인"
+  url: /journal/2026/09/18/final-review-team-split/

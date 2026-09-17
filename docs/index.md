@@ -8,7 +8,7 @@ description: 기획에서 출품까지. 요구사항과 설계, 검증 결과를
 status: 초안 v0.1
 ---
 
-<div class="notice"><strong>문서 읽는 순서</strong><br>프로젝트 개요로 방향을 확인한 뒤, 요구사항 → 상위 설계 → 상세 설계 → 테스트 → 검수 → 출품 순서로 읽어 주세요. 현재는 기획 초안이며 실제 서비스 구현과 성능 검증은 진행 전입니다.</div>
+<div class="notice"><strong>문서 읽는 순서</strong><br>프로젝트 개요로 방향을 확인한 뒤, 요구사항 → 상위 설계 → 상세 설계 → 테스트 → 검수 → 출품 순서로 읽어 주세요. 각 문서는 9월 15일 기획 초안 기준입니다. 이후의 구현·검증 결과는 <a href="{{ '/journal/' | relative_url }}">개발 기록</a>과 <a href="{{ '/progress/' | relative_url }}">진행 현황</a>에 먼저 반영했습니다.</div>
 
 <div class="doc-links"><a class="doc-link" href="{{ '/docs/overview/' | relative_url }}">프로젝트 개요 <span>대상 사용자, 세 후보 기능, 결정할 범위</span></a><a class="doc-link" href="{{ '/docs/hackathon/' | relative_url }}">해커톤 안내 <span>참가 트랙, 공식 일정, 제출 자료</span></a></div>
 
