@@ -5,12 +5,14 @@ permalink: /docs/
 nav_order: 2
 has_children: true
 description: 기획에서 출품까지. 요구사항과 설계, 검증 결과를 하나의 흐름으로 연결합니다.
-status: 초안 v0.1
+status: 9/18 구현·검증 반영
+updated: "2026-09-18"
+owner: 담당 장민석 · PM/아키텍트
 ---
 
-<div class="notice"><strong>문서 읽는 순서</strong><br>프로젝트 개요로 방향을 확인한 뒤, 요구사항 → 상위 설계 → 상세 설계 → 테스트 → 검수 → 출품 순서로 읽어 주세요. 각 문서는 9월 15일 기획 초안 기준입니다. 이후의 구현·검증 결과는 <a href="{{ '/journal/' | relative_url }}">개발 기록</a>과 <a href="{{ '/progress/' | relative_url }}">진행 현황</a>에 먼저 반영했습니다.</div>
+<div class="notice"><strong>문서 읽는 순서</strong><br>프로젝트 개요로 방향을 확인한 뒤, 요구사항 → 상위 설계 → 상세 설계 → 테스트 → 검수 → 출품 순서로 읽어 주세요. 요구사항·설계·테스트·검수 문서는 9월 18일 서비스 저장소 main의 코드와 로컬 실행 결과를 기준으로 고쳐 썼습니다. 배포 환경 검증과 코드 프리즈 전 보완(P0)은 아직 반영 전이며, 날짜별 변화는 <a href="{{ '/journal/' | relative_url }}">개발 기록</a>과 <a href="{{ '/progress/' | relative_url }}">진행 현황</a>에서 확인할 수 있습니다.</div>
 
-<div class="doc-links"><a class="doc-link" href="{{ '/docs/overview/' | relative_url }}">프로젝트 개요 <span>대상 사용자, 세 후보 기능, 결정할 범위</span></a><a class="doc-link" href="{{ '/docs/hackathon/' | relative_url }}">해커톤 안내 <span>참가 트랙, 공식 일정, 제출 자료</span></a></div>
+<div class="doc-links"><a class="doc-link" href="{{ '/docs/overview/' | relative_url }}">프로젝트 개요 <span>확정한 방향, 처음 검토한 세 주제, 범위 기준</span></a><a class="doc-link" href="{{ '/docs/hackathon/' | relative_url }}">해커톤 안내 <span>참가 트랙, 공식 일정, 접수 준비, 활용 데이터</span></a></div>
 
 ## 산출물 목차
 
@@ -33,6 +35,7 @@ status: 초안 v0.1
 
 ## 문서 상태를 읽는 방법
 
+- **구현 / 로컬 실행 결과:** 서비스 저장소 main에 있고 로컬 테스트로 확인한 내용입니다. 배포 환경 확인은 따로 표시합니다.
 - **초안 / 검토안 / 계획안:** 팀 논의와 검증을 거쳐 바뀔 수 있는 제안입니다.
 - **작성 틀:** 구현·실측 이후 채울 항목을 정리한 상태입니다.
 - **미정:** 아직 결정하지 않은 항목입니다.

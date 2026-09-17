@@ -6,6 +6,7 @@ nav_order: 3
 permalink: /docs/milestones/
 description: 작업을 산출물과 완료 조건으로 나누고 공식 대회 일정에 맞춰 연결합니다.
 status: 팀 계획 초안
+owner: 담당 장민석 · PM
 ---
 
 ## 9월 — 10월 마일스톤

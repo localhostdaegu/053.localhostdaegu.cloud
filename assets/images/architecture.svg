@@ -1,28 +1,37 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 540" role="img" aria-labelledby="title desc">
-  <title id="title">beyondbob 모듈별 데이터 흐름 — 설계 검토안</title>
-  <desc id="desc">사용자 입력을 공통 모듈이 검증한 뒤 선택한 세무·매출, 창업 매칭, 상권 컨설팅 모듈에서 처리합니다. 데이터 조회와 AI 설명을 거쳐 출처와 함께 결과를 반환합니다. 실제 구현 범위는 미정입니다.</desc>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 600" role="img" aria-labelledby="title desc">
+  <title id="title">localhostdaegu 시스템 흐름 — 2026-09-18 main 기준</title>
+  <desc id="desc">예비 창업자가 Next.js 프론트엔드에서 질문과 재무 입력을 보내면 FastAPI 백엔드의 입력 해석, 상권 진단, 자금 계산·매칭, AI 리포트 모듈이 처리합니다. 데이터는 PostgreSQL과 pgvector에 저장되고, 정기 수집이 외부 공공 데이터를 적재합니다. AI 리포트는 Gemini API로 해석 문단을 생성합니다. 배포 전 로컬 구성입니다.</desc>
   <defs><marker id="arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0 0 10 5 0 10Z" fill="#80998b"/></marker></defs>
   <style>text{font-family:"Noto Sans KR",sans-serif;fill:#304d40} .label{font-size:14px;font-weight:600} .small{font-size:11px;fill:#667e70} .edge{fill:none;stroke:#80998b;stroke-width:1.6;marker-end:url(#arrow)} .box{stroke-width:1.2}</style>
-  <rect width="900" height="540" fill="#fff"/>
-  <text x="24" y="28" class="small" style="letter-spacing:2px">MODULE FLOW / CONCEPT DRAFT</text>
-  <rect class="box" x="60" y="55" width="230" height="66" rx="9" fill="#f3f5f0" stroke="#d3ded2"/>
-  <text class="label" x="175" y="81" text-anchor="middle">사용자 · 점주 · 예비 창업자</text><text class="small" x="175" y="103" text-anchor="middle">질문 / 조건 / 샘플 자료</text>
-  <path class="edge" d="M290 88H442"/><text class="small" x="365" y="75" text-anchor="middle">요청 전달</text>
-  <rect class="box" x="450" y="55" width="350" height="66" rx="9" fill="#f1f4f2" stroke="#cad7cd"/>
-  <text class="label" x="625" y="81" text-anchor="middle">M0 · 공통 입력 검증</text><text class="small" x="625" y="103" text-anchor="middle">필수 항목 · 지원 범위 확인</text>
-  <path class="edge" d="M625 121V154H175V191"/><path class="edge" d="M625 121V154H450V191"/><path class="edge" d="M625 121V154H725V191"/>
-  <text class="small" x="450" y="178" text-anchor="middle">선정한 기능으로 분기 · 세 기능의 구현 범위 미정</text>
-  <rect class="box" x="60" y="200" width="230" height="83" rx="9" fill="#e8f4ed" stroke="#80bba1"/>
-  <text class="label" x="175" y="230" text-anchor="middle">M1 · 세무·매출</text><text class="small" x="175" y="255" text-anchor="middle">자료 요약 / 집계 / 확인 항목</text>
-  <rect class="box" x="335" y="200" width="230" height="83" rx="9" fill="#f0ebf7" stroke="#b7a3cf"/>
-  <text class="label" x="450" y="230" text-anchor="middle">M2 · 청년창업 매칭</text><text class="small" x="450" y="255" text-anchor="middle">조건 확인 / 후보 정보 / 매칭 이유</text>
-  <rect class="box" x="610" y="200" width="230" height="83" rx="9" fill="#f8f1e4" stroke="#d6b878"/>
-  <text class="label" x="725" y="230" text-anchor="middle">M3 · 골목상권 컨설팅</text><text class="small" x="725" y="255" text-anchor="middle">지역 지표 / 해설 / 실행 제안</text>
-  <path class="edge" d="M175 283V316H385V348"/><path class="edge" d="M450 283V348"/><path class="edge" d="M725 283V316H515V348"/>
-  <text class="small" x="450" y="339" text-anchor="middle">자료 조회 · 분석 결과 · 설명 요청</text>
-  <rect class="box" x="150" y="357" width="600" height="70" rx="9" fill="#eaf0f4" stroke="#9db5c9"/>
-  <text class="label" x="450" y="385" text-anchor="middle">M4 · 데이터 조회 / 기능 처리 / 필요한 경우 AI 추론</text><text class="small" x="450" y="408" text-anchor="middle">출처와 버전 기록 · API 실패 / 근거 부족 처리</text>
-  <path class="edge" d="M450 427V465"/><text class="small" x="468" y="449">결과 + 근거 반환</text>
-  <rect class="box" x="150" y="474" width="600" height="45" rx="9" fill="#f3f5f0" stroke="#d3ded2"/>
-  <text class="label" x="450" y="502" text-anchor="middle">사용자에게 결과 · 출처 · 기준일 · 미확인 사항 표시</text>
+  <rect width="900" height="600" fill="#fff"/>
+  <text x="24" y="28" class="small" style="letter-spacing:2px">SYSTEM FLOW / MAIN 2026-09-18 · LOCAL</text>
+  <rect class="box" x="60" y="55" width="220" height="66" rx="9" fill="#f3f5f0" stroke="#d3ded2"/>
+  <text class="label" x="170" y="81" text-anchor="middle">예비 창업자</text><text class="small" x="170" y="103" text-anchor="middle">한 문장 질문 · 재무 입력</text>
+  <path class="edge" d="M280 88H322"/>
+  <rect class="box" x="330" y="55" width="510" height="66" rx="9" fill="#f1f4f2" stroke="#cad7cd"/>
+  <text class="label" x="585" y="81" text-anchor="middle">프론트엔드 · Next.js (:3300)</text><text class="small" x="585" y="103" text-anchor="middle">채팅 첫 화면 → 지도·진단 → 자금 시뮬레이션·결론 → AI 리포트</text>
+  <path class="edge" d="M585 121V162"/><text class="small" x="600" y="146">REST · SSE</text>
+  <rect class="box" x="60" y="170" width="780" height="170" rx="10" fill="#fafbf8" stroke="#d3ded2"/>
+  <text class="label" x="80" y="198">백엔드 · FastAPI (:8300)</text><text class="small" x="260" y="198">헥사고날 구조 · 기능별 bounded context</text>
+  <rect class="box" x="80" y="215" width="172" height="100" rx="9" fill="#f1f4f2" stroke="#b9c9bd"/>
+  <text class="label" x="166" y="243" text-anchor="middle">입력 해석</text><text class="small" x="166" y="266" text-anchor="middle">intent</text><text class="small" x="166" y="286" text-anchor="middle">지명·업종·예산 추출</text>
+  <rect class="box" x="270" y="215" width="172" height="100" rx="9" fill="#e8f4ed" stroke="#80bba1"/>
+  <text class="label" x="356" y="243" text-anchor="middle">상권 진단</text><text class="small" x="356" y="266" text-anchor="middle">master · store · metric</text><text class="small" x="356" y="286" text-anchor="middle">지표 · 위험도(상대 순위)</text>
+  <rect class="box" x="460" y="215" width="172" height="100" rx="9" fill="#f0ebf7" stroke="#b7a3cf"/>
+  <text class="label" x="546" y="243" text-anchor="middle">자금 계산·매칭</text><text class="small" x="546" y="266" text-anchor="middle">finance · matching</text><text class="small" x="546" y="286" text-anchor="middle">부족 자금 · 상품 12건</text>
+  <rect class="box" x="650" y="215" width="172" height="100" rx="9" fill="#f8f1e4" stroke="#d6b878"/>
+  <text class="label" x="736" y="243" text-anchor="middle">AI 리포트</text><text class="small" x="736" y="266" text-anchor="middle">analysis · rag · shock</text><text class="small" x="736" y="286" text-anchor="middle">코드 수치 + AI 해석</text>
+  <path class="edge" d="M210 340V382"/><text class="small" x="224" y="366">조회</text>
+  <path class="edge" d="M736 340V382"/><text class="small" x="750" y="366">해석 문단 · 임베딩</text>
+  <rect class="box" x="60" y="390" width="300" height="80" rx="9" fill="#eaf0f4" stroke="#9db5c9"/>
+  <text class="label" x="210" y="420" text-anchor="middle">PostgreSQL 17 + pgvector</text><text class="small" x="210" y="444" text-anchor="middle">인허가·지표·경계·인구·임대료·금리</text><text class="small" x="210" y="460" text-anchor="middle">지원사업·뉴스·충격 이벤트·RAG 색인</text>
+  <rect class="box" x="400" y="390" width="200" height="80" rx="9" fill="#f3f5f0" stroke="#d3ded2"/>
+  <text class="label" x="500" y="420" text-anchor="middle">정기 수집 (cron)</text><text class="small" x="500" y="444" text-anchor="middle">뉴스 매시 · 인허가·공고·색인 매일</text><text class="small" x="500" y="460" text-anchor="middle">금리·임대료 주 1회</text>
+  <path class="edge" d="M400 430H368"/>
+  <rect class="box" x="640" y="390" width="200" height="80" rx="9" fill="#f8f1e4" stroke="#d6b878"/>
+  <text class="label" x="740" y="420" text-anchor="middle">Gemini API</text><text class="small" x="740" y="444" text-anchor="middle">gemini-3.8-flash</text><text class="small" x="740" y="460" text-anchor="middle">gemini-embedding-001</text>
+  <rect class="box" x="400" y="510" width="440" height="62" rx="9" fill="#f1f4f2" stroke="#cad7cd"/>
+  <path class="edge" d="M500 510V478"/>
+  <text class="label" x="620" y="536" text-anchor="middle">외부 공공 데이터</text><text class="small" x="620" y="558" text-anchor="middle">인허가 · 브이월드 · R-ONE · ECOS · 기업마당 · 온통청년 · 구글 뉴스 RSS</text>
+  <text class="small" x="60" y="530">Redis·Neo4j 컨테이너는 구성돼 있으나</text><text class="small" x="60" y="548">현재 백엔드 코드에서 사용하지 않습니다.</text><text class="small" x="60" y="566">배포(localhostdaegu.cloud)는 아직 하지 않았습니다.</text>
 </svg>

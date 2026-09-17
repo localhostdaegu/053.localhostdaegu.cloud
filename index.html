@@ -22,7 +22,7 @@ description: 골목의 가능성을 데이터로 연결합니다. beyondbob의 �
       <span class="map-coordinate" aria-hidden="true">DAEGU · LOCAL POSSIBILITIES</span>
     </div>
   </div>
-  <div class="hero-facts"><div><strong>03</strong><span>함께 검토할 주제</span></div><div><strong>03</strong><span>함께 만드는 사람</span></div><div><strong>09 — 10</strong><span>2026 프로젝트 일정</span></div><div class="hero-fact-note">기획부터 출품까지<br><b>과정과 근거를 기록합니다.</b></div></div>
+  <div class="hero-facts"><div><strong>03</strong><span>처음 검토한 주제</span></div><div><strong>03</strong><span>함께 만드는 사람</span></div><div><strong>09 — 10</strong><span>2026 프로젝트 일정</span></div><div class="hero-fact-note">기획부터 출품까지<br><b>과정과 근거를 기록합니다.</b></div></div>
 </section>
 
 <section class="home-section">
@@ -32,7 +32,7 @@ description: 골목의 가능성을 데이터로 연결합니다. beyondbob의 �
     <article class="focus-card {{ topic.color }}">
       <div class="focus-top"><span class="focus-number">{{ topic.number }}</span><span class="focus-label">{{ topic.label }}</span></div>
       <h3>{{ topic.name }}</h3><p class="focus-question">{{ topic.question }}</p><p>{{ topic.description }}</p>
-      <a href="{{ '/docs/requirements/' | relative_url }}#{{ topic.requirement | downcase }}">요구사항 검토안 <span aria-hidden="true">↗</span></a>
+      <a href="{{ '/docs/requirements/' | relative_url }}#{{ topic.requirement | downcase }}">요구사항 <span aria-hidden="true">↗</span></a>
     </article>
     {% endfor %}
   </div>

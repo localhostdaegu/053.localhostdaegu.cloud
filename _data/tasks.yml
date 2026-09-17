@@ -97,12 +97,12 @@
 - id: WBS-017
   title: 대구 빅데이터활용센터 데이터 이용·반출 조건 확인
   status: 논의 중
-  assignee: 미배정
+  assignee: 미배정(마감 전 범위 밖)
   output: "이용 신청·반출 심사·허용 집계 단위·서비스 공개 범위를 문서로 확인. 마감 전 확보를 전제하지 않음"
   url: /decisions/
 - id: WBS-018
   title: 로그에 기록된 외부 API 키 재발급
   status: 예정
-  assignee: 미배정
+  assignee: 장민석(키 관리)
   output: "키 재발급·교체 후 다음 정기 수집에서 정상 동작 확인"
   url: /journal/2026/09/18/final-review-team-split/

@@ -4,8 +4,9 @@
 
 - **팀:** beyondbob / 김충식 · 류준 · 장민석
 - **트랙:** 소상공인·골목상권 디지털 금융
-- **후보 기능:** 세무·매출 AI 도우미, 청년창업 매칭, 골목상권 AI 컨설팅
-- **상태:** 사이트 초안. MVP 범위·역할·서비스명은 미정.
+- **서비스:** localhostdaegu — 창업 금융 네비게이터(청년창업 매칭 + 골목상권 AI 컨설팅, 세무·매출은 제외)
+- **역할:** 장민석 팀장·PM/아키텍트 · 김충식·류준 기능 단위 풀스택
+- **상태:** 2026-09-18 기준 프로토타입 로컬 완주·테스트 통과, 배포·접수 준비 중. 사이트는 서비스 저장소 개발 기록을 수동으로 반영합니다.
 - **사이트 주소:** `https://053.localhostdaegu.cloud`
 
 ## 로컬 실행
@@ -49,7 +50,7 @@ bundle exec jekyll build --trace
 | `journal.html`, `_posts/` | 최신순 개발 기록 |
 | `showcase.md` | 출품 시나리오·자료 준비 상태 |
 | `team.html`, `_data/team.yml` | 팀 소개와 프로필 데이터 |
-| `_data/project.yml` | 후보 기능·일정·사이트 기준일 |
+| `_data/project.yml` | 처음 검토한 세 주제·일정·사이트 기준일 |
 | `_data/tasks.yml` | WBS 작업·상태·담당·완료 조건 |
 | `_data/deliverables.yml` | 홈과 문서 목차가 공유하는 산출물 목록 |
 | `_layouts/`, `_includes/` | 공통 문서·기록 레이아웃과 브랜드 |
@@ -63,7 +64,7 @@ bundle exec jekyll build --trace
 
 ## 문서 수정
 
-Markdown 상단 메타데이터의 `title`, `parent`, `nav_order`, `permalink`, `status`, `updated`를 사용합니다. 개별 문서를 바꾼 날은 `updated: "YYYY-MM-DD"`로 기록합니다. 날짜를 생략하면 `_data/project.yml`의 공통 기준일을 표시합니다.
+Markdown 상단 메타데이터의 `title`, `parent`, `nav_order`, `permalink`, `status`, `updated`, `owner`를 사용합니다. `owner`는 문서 머리의 담당 표시(예: `담당 장민석 · PM/아키텍트`)이며, 생략하면 "담당 미배정"으로 표시됩니다. 개별 문서를 바꾼 날은 `updated: "YYYY-MM-DD"`로 기록합니다. 날짜를 생략하면 `_data/project.yml`의 공통 기준일을 표시합니다.
 
 요구사항 번호(REQ), 작업 번호(WBS), 테스트 번호(TC)를 유지해 관련 문서를 연결합니다. 기능의 실제 구현 범위가 정해지면 홈의 후보 상태와 요구사항·설계·출품 자료를 함께 갱신합니다.
 
@@ -94,7 +95,7 @@ description: 무엇을 바꾸고 확인했는지 한 문장으로 요약
 - [Life Tutorial](https://lifetutorial.beyondfacade.cloud/): 문서 탐색과 출품 자료
 - [Just the Docs](https://just-the-docs.com/): Jekyll 테마
 
-서비스의 실제 기능과 측정값이 준비되기 전에는 `검토안`, `미정`, `미측정` 상태를 유지합니다.
+구현·측정하지 않은 항목은 `예정`, `미정`, `미측정`, `미실행`으로 표시하고, 구현한 항목에는 실행일과 환경(로컬·배포)을 함께 적습니다.
 
 ## 초안 검증
 
