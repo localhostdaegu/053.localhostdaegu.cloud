@@ -6,6 +6,105 @@
 
 ## 2026-09-18
 
+### 모델 평가 — 로컬 임베딩(bge-m3·qwen3-embedding) 대 Gemini (오프라인·온라인 가용성)
+
+서비스가 온라인(외부 API)·오프라인(로컬) 어느 쪽으로도 응대해야 하므로, 두 경로를 같은 코퍼스·질문으로 **모두** 평가했다는 기록이 필요했다. 로컬 3종·외부 6종 전부 실행. 기록은 `docs/model-evaluation.md`(선행 프로젝트 research.remakeday.com/experiments/model-selection 과 같은 틀).
+
+- **어댑터**: Ollama 공통 베이스(Template Method) 위에 qwen(차원 인자)·bge-m3 어댑터, Gemini 어댑터에 `output_dimensionality`. 기본 차원이면 `model_name`이 기존 값 그대로라 DB `embedded_by` 호환, 다른 차원이면 `-2560d` 접미사. 레지스트리에 `bge-m3` 등록. **회귀 1건**: 접미사 붙은 `model_name`이 API 호출에도 나가 404 — API 모델 ID를 상수로 분리하고 테스트에 고정.
+- **평가셋**: gemma4:12b로 funding 60·news 20 질문 생성(전부 candidate, 미검수). gemma4는 thinking 모델이라 질문 1건 25초 → `think:false`로 0.9초. 생성기에 `--source-type`·think 차단 추가.
+- **하네스** `compare_embedders.py`: DB 컬럼이 `vector(1536)` 고정이라 1024·2560은 저장 불가 → DB 밖 numpy 코사인. Gemini는 MRL 실측(절단+정규화와 코사인 1.0)을 근거로 3072만 호출하고 나머지 차원은 잘라 만듦.
+- **실측(80건)**: Top-1 qwen@2560 **0.762** > gemini@1024 0.738 > gemini@1536(현 운영) 0.713 > gemini@3072 0.700 > bge-m3 0.650. 질문 단위로 qwen만 맞힘 8 / Gemini만 3. 로컬↔Gemini Top-1 일치 0.71·Jaccard@5 0.45 — **정확도는 동급이어도 근거 문서 절반은 다르다.** 질문 지연 로컬 94~118 ms 대 Gemini 394 ms.
+- **같은 차원 실호출**: 사용자 요구로 Gemini 1024·2560을 API에 직접 지정해 전량 재임베딩(`gemini-api@*`). 절단 파생과 순위 완전 일치(일치·Jaccard·ρ 1.000) — 같은 차원 비교가 절단 여부와 무관하게 성립.
+- **결론**: 로컬 대체는 qwen@2560, bge-m3 탈락. 운영 전환은 마감 뒤(컬럼 2560 마이그레이션 + 전량 재색인 + provider 설정화). 
+- **미결**: ① 평가셋 80건 검수·confirmed 승격. ② news 질문은 제목 기반이라 포괄적 — 모든 모델 Top-1 0.35~0.50, 본문 기반으로 다시 만들어야 함.
+
+### 모델 평가 — 리포트 LLM 로컬 3종(gemma4·exaone·kanana) 대 gemini-3.8-flash
+
+로컬 후보는 한국어 적합성과 오프라인에서 임베딩(qwen 4.1 GiB)과 LLM을 16 GB GPU에 동시에 올려야 하는 자원 한계로 골랐다. exaone은 NC 라이선스라 운영 후보가 아니지만 한국어 모델 중 평가 기준점으로 가장 좋아 잣대로 넣었다(모두 사용자 결정). 기록 `docs/model-evaluation.md` §10.
+
+- **어댑터**: `OllamaReportWriter`(ReportWriterPort, Gemini와 같은 temperature 0.3·1024토큰·`think:false`) 신설. `analysis_dependencies`에 작성기 레지스트리(gemini/ollama)와 설정 `REPORT_WRITER_PROVIDER`·`OLLAMA_REPORT_MODEL`. 에이전트 배선을 `build_agents()`로 빼서 하네스가 운영과 같은 배선으로 컨텍스트를 채운다.
+- **운영 버그 1건 발견·수정**: 하네스가 운영 에이전트를 돌리자 `CachingRegionUseCaseProxy.summary()`가 `year`를 받지 않아 TypeError. 09-18 연도 전달 작업에서 프록시가 빠져 있었다 — 운영에서는 예외를 삼켜 market 섹션이 비어 나갔을 것. 프록시 수정 + 테스트 고정.
+- **하네스** `compare_report_writers.py`: 실제 DB 컨텍스트 3개(review 재무 있음/없음·handoff) × LLM 섹션 6종 + verdict 방향 일치 짝 2 = 14 프롬프트 × 2회. 게이트는 결정론(제목·대괄호 금지, 분량 상한, 프롬프트에 없는 숫자, 「」 인용이 실제 제목인지, 한국어 비율, red/green 방향 일치). 1차에서 인용 게이트가 문장부호까지 정확 일치를 요구해 Gemini 정당 인용을 위반으로 잡음 → 정규화 후 재실행.
+- **실측(후보당 28건)**: 게이트 전부 통과 gemini **1.000** = gemma4:12b **1.000** > kanana 0.857 > exaone 0.536. 숫자 환각은 네 후보 모두 0, 방향 일치 전부 1.0. 위반은 kanana가 funding 인용 형식(태그 생략·기관명 병기) 4건, exaone이 불릿 초과 6건·인용 남발(사용자 질문·키워드에 「」) 7건. 지어낸 문서·숫자는 없었다. 지연: gemma4 TTFT 0.46 s·총 2.95 s(48 tok/s), Gemini 1.68 s·2.12 s.
+- **동주 실측**: GPU 비운 뒤 qwen3-embedding:4b(2560)+LLM — gemma4 11.6 GiB, exaone 8.9, kanana 9.0 모두 상주. 하네스 본실행의 "동주 False"는 직전 후보 잔류로 인한 측정 순서 문제.
+- **결론**: 오프라인 리포트 작성기는 **gemma4:12b**, kanana 차선. exaone은 기준점(형식 지시는 흘려도 숫자·방향은 지킴)으로만 읽는다. 기본 provider는 여전히 gemini.
+- **미결**: 컨텍스트 3·반복 2로 표본이 작다 / 설득력·해석 정확도는 안 쟀다(LLM-as-judge 미도입) / 자동 폴백(외부 실패→로컬) 미설계.
+
+
+### 백엔드·프론트 — 창업자금 사전상담 전환 (T1~T6)
+
+`docs/2026-09-18-imbank-consultation-plan.md`의 T1~T5 + 신설 T3-0을 구현했다. 브랜치 `feat/consultation-db-schema`, 커밋 9개. **사용자 결정으로 09-19 18:00 코드 프리즈를 무시하고 진행했고, 블록체인 앵커링은 범위에서 뺐다.**
+
+- **T1 재무 엔진 자금 구성 분리** (`8beffcf`): 엔진이 이미 `need = capex + fixed*6`을 내부 계산하고 있어 **산식 변경이 아니라 노출 작업**이었다. `operating_reserve`·`total_required_funds`·`external_funding_need`를 `FinanceResult`·API 응답·`SimulationSummary`에 추가하고, `funding_gap`의 라벨을 '희망대출 반영 후 남는 부족액'으로 명확히 했다. 계획 §7-1·§7-2 검산값이 첫 실행에 그대로 맞았다. **§7-2 회귀 해소**: 자기자본 4,000만·희망대출 2,500만이면 `funding_gap`은 0이지만 `external_funding_need` 2,260만이 남아 '자기자본으로 충분' 표현의 근거가 사라졌다. 재무 입력이 없으면 시뮬레이션과 상품 매칭을 함께 건너뛴다(누락을 0원으로 간주해 후보를 구하던 분기 제거) — 파급으로 재무 없는 컨텍스트의 SSE에서 `product_matching` 이벤트가 사라져 테스트 2건의 기대값을 교체했다.
+- **T3-0 상품 메타데이터 배선(신설)** (`b80edb4`): ORM·엔티티·자식 2테이블은 이미 있었지만 `read_products()`가 15필드만 읽어 `consultation`은 항상 None이었다. **T3가 JSON에 적어도 두 테이블은 0행으로 남는 구조**였다. `consultation_metadata` 키 파싱을 추가하고, 정렬 기준을 `orm_mapper.to_entity`와 같은 `(step_type, step_order)`로 맞췄다 — 기존 멱등 테스트가 `list_all()`과 `read_products()`를 직접 비교하므로 어긋나면 회귀한다.
+- **T2 계산안 보관·비교·선택** (`a1cc703`, `27114b3`, `f8473cb`): `sessionStorage`의 `localhostdaegu.consultation.v1`에 첫 성공 계산을 최초안으로 고정하고 이후 계산이 현재안을 갱신한다. 없는 안은 선택되지 않으며(최종자료 생성을 막는 근거) 지역·업종이 바뀌면 이전 결과·선택을 무효화한다. 비교표는 **바뀐 입력만** 추려 보여준다. 결과 주 지표를 진단(총 창업비용·월 고정비)에서 상담 준비(손익분기 매출·총 준비자금·조달 필요)로 교체. 지도 주 버튼을 'AI 분석'에서 '이 자리로 창업자금 사전상담'으로 바꾸고 지역 분석은 보조 링크로 강등. 미제출 수정 중에는 이전 결과임을 알리고 선택을 잠근다.
+- **T4 상담자료(handoff)** (`48d6187`): `POST /analysis`에 `purpose`(review|handoff)와 `consultation`을 받는다. handoff는 `finance`·`consultation`이 모두 있어야 하고 없으면 422. 비교 원본도 **서버 엔진으로 다시 계산**한다(클라이언트가 보낸 결과를 기준으로 삼지 않음). 상품 조회 금액을 `funding_gap` → `external_funding_need`로 통일. handoff 섹션은 plan·comparison·calculator·funding·questions·market이며 위험 판정 헤드라인(verdict)과 충격 섹션이 없다. 목적→구성은 `_SECTION_PLANS` 딕셔너리 Factory로 두고 인터랙터는 섹션 리스트 대신 팩토리를 주입받는다. **comparison은 LLM을 호출하지 않는 결정론 표**이고 questions는 확인 못 한 항목을 코드가 나열한 뒤 질문만 LLM이 쓴다.
+- **T3 상담 후보 엔드포인트·원문 대조** (`175d155`, `81154fe`): `build_consultation_candidates` 순수 함수와 `GET /matching/consultation` 신설. `unverified`·`none`과 메타데이터 없는 상품은 iM뱅크 후보에서 제외, 한도가 조달 필요보다 적어도 빼지 않고 설명에 반영, 빈 `documents`는 '공식 안내에서 확인 필요'가 된다. 상담 경로는 `load_consultation_products`로 분리해 `GET /matching`의 15필드 계약을 보존했다.
+- **T5 상담자료 저장·공식 경로** (`0fff3bd`): 완성된 handoff 리포트만 Markdown으로 내보낸다(생성 중이거나 `plan` 섹션이 없는 review 결과는 차단 — 선택안을 바꾼 뒤 옛 자료가 나가지 않게 하는 장치). 브라우저 인쇄의 PDF 저장을 쓰고 PDF 전용 라이브러리를 넣지 않았다. 링크를 눌러도 은행에 자료가 전송되지 않으며 직접 지참해야 함을 화면에 밝힌다.
+
+- **실측 — 원문 대조는 12건 중 2건만 열었다**: iM뱅크 상품 페이지에서 선행 절차(소진공 확인서 발급, 보증서 발급)·신청 경로를 확인해 imbank-1·2를 `direct`로, 매일신문 기사(2025-11-30)를 근거로 imbank-3을 `linked`로 기록했다. **`dgsinbo.or.kr`은 TLS 인증서 체인 검증 실패(`unable to verify the first certificate`)로 접근하지 못해 재단 5건·정책자금 4건 모두 미확인**이다. 이름상 은행 협약이 있어 보이는 dgsinbo-4도 근거를 열지 못해 올리지 않았다. 근거·한계는 `docs/research/finance-products/2026-09-18-consultation-sources.md`.
+- **실측 — 배선 확인**: 개발 DB 재시드 후 `product_consultation_metadata` **3행**, `product_procedure_step` **7행**. 12건 중 9건이 미확인이라 **후보 없음 경로가 실제 기본 동선**이며, 이 경로도 일반 상담 질문과 iM뱅크 공식 안내 링크를 남긴다.
+- **회귀 1건 수정**: JSON 폴백 로더가 원본 dict를 그대로 넘기고 있어 JSON에 `consultation_metadata`를 넣자 DB 경로와 응답 형태가 갈라졌다. 폴백도 15필드로 투영하게 고쳤다.
+- **테스트**: 백엔드 **433 passed / 1 skipped**(착수 전 392), 프론트 **163 passed / 37 files**(착수 전 97), `tsc --noEmit` clean, `npm run build` 성공.
+- **E2E**: `funnel.cjs`를 첫 입력 → 지도 선택 → 사전상담 → 최초 계산 → 조건 수정 → 재계산 → 최초안 재선택 → 상담자료 → 공식 링크까지 확장해 **실백엔드(8300)로 전 구간 PASS**. 미제출 수정 경고와 '자기자본으로 충분' 문구 부재도 단계로 넣었다.
+- **미결·주의**: ① 대구신보 9건 원문 대조 미완 — 인증서 문제를 우회할 접근 경로 필요. ② `external_dataset`·`regional_indicator`는 여전히 0행(센터 D1·D2 미신청). ③ `consultation_*` 4테이블은 아직 프론트가 쓰지 않는다 — 화면 상태는 `sessionStorage`이고 서버 저장 배선(T7)은 하지 않았다. ④ 블록체인 앵커링은 사용자 결정으로 범위에서 제외. ⑤ '유효한 0원과 미입력 구분'은 폼에서 미구현이라 `open_questions`에 '미입력' 항목을 만들지 않았다(없는 근거를 만들지 않기 위해). ⑥ 지도 선택 연도의 리포트 미전달은 그대로 이월.
+
+### 후속 과제 6건 — 미입력 구분 · 연도 전달 · BC 경계 · 문서 저장 · 세션 갱신 · 고립 테이블
+
+- **① '유효한 0원'과 '미입력' 구분**: 테스트를 쓰다가 **실제 UX 결함**이 드러났다 — 필드가 처음부터 `0`을 보여주면 사용자가 0을 입력해도 값이 같아 변경 이벤트가 나지 않는다. 즉 **0을 확인할 방법이 없었다.** 손대지 않은 0원은 빈 칸(placeholder "미입력")으로 보여주고, 제출 시 미입력 목록을 `PlanSnapshot.unconfirmed`에 기록해 확인 목록에 "보증금 미입력 — 0원이 맞는지 확인 필요"로 싣는다. 비율 필드는 업종 벤치마크·ECOS 조회라는 출처가 있어 판정에서 뺐다.
+- **② 지도 선택 연도의 리포트 전달**: `AnalysisRequest.year` → `MarketDataPort.fetch` → `RegionUseCase.summary`·`RegionMetricSummaryPort.fetch`·`RiskUseCase.score_for` 까지 이었다. 전부 기본값 `None`(마지막 완결 연도)이라 기존 동작을 보존한다. **지표 카드와 위험도에 같은 연도를 넘긴다** — 한쪽만 넘기면 기준연도가 어긋난다. funnel E2E 의 `/analysis` URL 에 `year=2025` 가 실리는 것을 확인했다.
+- **③ 교차 BC 엣지 정리**: `manual_product_gateway`가 `apps.product`의 **Adapter**(`SqlAlchemyFinanceProductRepository`)를 직접 import 하던 것을 product BC 의 **입력 포트**(`FinanceProductUseCase`) 주입으로 바꿨다 — `analysis` 의 `market_data_gateway` 와 같은 형태다. product BC 에 입력 포트·인터랙터·조립 루트 3파일을 신설했다. `tests/test_matching_bc_boundary.py`로 **AST 를 훑어 다른 BC 어댑터 import 를 금지**하고 도메인이 어느 BC 도 모르는지 검사한다.
+- **④ `consultation_document` 배선**: `POST /consultation/{id}/documents` 신설. 상담자료를 내려받으면 어떤 선택안(`plan_id`)으로 만든 자료인지와 sha256 해시를 남긴다. 서버가 `(session_id, plan_kind)`로 `plan_id`를 찾으므로 프론트가 내부 id 를 다루지 않는다. 내려받기는 이미 끝난 뒤라 기록 실패는 삼킨다. **해시는 내용 변경 확인용이며 블록체인 앵커링이 아니다.**
+- **⑤ 세션 갱신**: `PUT /consultation/{id}` 신설 — 부분 병합이 아니라 **교체**다(클라이언트가 늘 전체 초안을 들고 있다). 초안에 `session_id`를 남겨 선택안을 바꿔 다시 상담자료를 만들어도 세션이 쌓이지 않는다. 앞서 "소비처가 없다"고 만들지 않았는데, 재방문 시 세션이 계속 새로 생기는 문제가 실제 소비처였다.
+- **⑥ 고립 테이블 2건 — 고치지 않기로 하고 대신 감시**: 엣지를 만드는 쪽이 더 나쁘다고 판단했다. `interest_rate`는 전국 시계열이라 `region`을 붙이면 3NF 위반이고, `funding_program`은 **실측 결과 지역 M:N 이 무의미**했다 — 1,693건 중 자치구 언급 35건의 대부분이 부산·광주·대전·울산이고(순진한 매칭은 틀린 엣지를 만든다), `org='대구광역시'`+`[대구]`로 안전하게 좁히면 **7건**만 남는다. 대신 `tests/test_schema_isolation.py`로 예외 2건을 이름·근거와 함께 고정했다 — 새 고립 테이블이 생기거나 예외가 해소됐는데 목록에 남아 있으면 실패한다. ORM 은 `apps/**/*_orm.py`를 직접 훑어 등록한다(alembic env.py 목록에 빠진 ORM 도 잡기 위해).
+- **테스트**: 백엔드 **472 passed/1 skipped**(직전 458), 프론트 **203 passed/40 files**(직전 187), tsc clean, build 성공, 실백엔드 E2E `funnel`·`analysis` 전 구간 PASS.
+
+### 후속 과제 3건 — 지역 한정 상품 매칭 · 노트 쓰기 경로 · mock 서울 잔재
+
+- **지역 한정 상품 매칭**(가치 가장 큼): `finance_product.district_code`(자치구 5자리, nullable FK → `district`, alembic `079cb96619ca`)를 추가하고 지역 한정 2건의 `category`를 `[]`에서 `null`로 되돌렸다. `[]`는 '해당 업종 없음'이라는 다른 뜻인데 '지역 한정이라 제외'로 오용되고 있었다. 사용자 자치구는 **행정동 10자리의 앞 5자리**(`2711059500` → `27110`). 자치구 미상이면 거르지 않고 "달성군 사업장만 신청 가능 — 지역 조건 확인 필요"를 확인 사항에 남긴다(연령 미입력 처리와 같은 원칙). 실측 **중구 10건 / 달성군 11건(dgsinbo-5) / 북구 11건(youth-1)**이고, 두 상품 모두 `linked`라 해당 지역에서는 **차선이 아니라 iM뱅크 후보 1군**으로 올라온다.
+  - **내가 만든 회귀 1건**: `category: []`를 풀자 레거시 `GET /matching`(지역 필터 없음)에 지역 한정 상품이 새어 나갔다. 같은 제외를 `district_code is not None` 으로 옮겨 계약을 유지했다. 기존 테스트가 잡아냈다.
+  - **FK 해석 문제**: 시드 CLI 실행 시 `NoReferencedTableError` — FK 대상 `district` 테이블이 같은 metadata 에 없었다. 리포지토리가 이미 같은 이유로 `IndustryOrm` 을 import 하고 있어 `DistrictOrm` 도 같은 방식으로 추가했다.
+  - **데이터 의존 테스트 1건 정리**: `category: []` 표본이 운영 JSON 에서 사라지자 그 상태를 검증하던 테스트가 깨졌다. 운영 데이터에 특정 엣지 케이스가 남아 있길 기대하는 구조라, 합성 표본으로 바꿨다.
+- **`consultation_note` 쓰기 경로**: 포트에 `list_notes`(읽기)만 있어 **테이블이 영원히 빈 상태**였다. `replace_notes`(통째 교체 — 재전송해도 행이 쌓이지 않음, `note_type` 검증)를 포트·리포지토리·인터랙터에 추가하고, 세션 생성 요청에 `assumptions`·`open_questions`를 받아 노트로 옮긴다. 프론트는 전송 계약과 **같은 규칙**(`toConsultationContext`)으로 만들어 화면·리포트·세션이 같은 문장을 쓴다.
+- **mock review 경로 서울 잔재 제거**: 강남구 카페·서울 평균 폐업률·`data.seoul.go.kr` 인용·부동산 매입 비교표(10억)가 남아 있었다. 대구 대신동 기준으로 바꾸되 **수치를 지어내지 않고 실제 DB 조회값**을 썼다(점포수 66·폐업률 57.4%·성장률 +8.2%·위험도 83.1). 계산표는 재무 엔진 형태로 교체하고, 도구 이름도 실제 것으로 맞춰 진행 패널이 한국어 라벨을 붙일 수 있게 했다.
+- **테스트**: 백엔드 **458 passed/1 skipped**(직전 449), 프론트 **187 passed/39 files**(직전 184), tsc clean, build 성공, 실백엔드 E2E `funnel`·`analysis` 전 구간 PASS.
+- **남은 것**: `consultation_document` 미사용 · 세션 갱신 엔드포인트 없음(선택안·변경 이유가 생성 시점 고정) · youth-1 의 2026년 재공고 확인 · 재단 4건 취급은행 문의.
+
+### 제출 준비 — 배포 차단 요소 제거와 제출 문서 4종
+
+- **CORS 하드코딩 제거**(배포 차단 요소): `main.py`가 `allow_origins`를 `localhost:3300`으로 고정하고 있어 **배포한 프론트의 요청을 브라우저가 버리는 상태**였다. `core/matrix/grid_cors.py`의 `allowed_origins()`로 로컬 오리진은 항상 허용하고 `CORS_ALLOW_ORIGINS`(쉼표 구분)를 뒤에 붙인다. 빈 항목·중복은 버린다. 실측: `CORS_ALLOW_ORIGINS=https://localhostdaegu.cloud`로 기동 후 preflight에 `access-control-allow-origin: https://localhostdaegu.cloud`, 로컬 오리진도 유지. ⚠️ `main.py`는 이어받기 §0-6상 '추가만' 파일이지만 모든 브랜치가 main에 병합돼 병렬 작업자가 없고 이 줄이 배포를 막아 한 줄만 바꿨다.
+- **배포 런북** `docs/deploy-runbook.md`: 정해야 할 것(호스팅·DB·DNS), 환경변수 표(백엔드 7·프론트 2), DB 준비 명령과 기대 행수, 기동 제약(**단일 워커 필수** — 인메모리 상태가 분석 요청 저장소와 mock 목적 저장소 두 곳, SSE 버퍼링 끄기, 타임아웃 여유), 배포 후 curl·브라우저 확인 목록. 함정 2건 기록 — `NEXT_PUBLIC_API_BASE` 미설정 시 **조용히 mock으로 떨어져** 라벨은 보이는데 값이 비고, `--reload` 없이 띄운 서버는 코드 변경이 반영되지 않아 E2E가 통과한 것처럼 보인다(오늘 실제로 겪었다).
+- **제안요약서** `docs/proposal-summary.md`: 트랙 5.3 공식 예시 '청년 창업 매칭 및 시드 금융 연결 AI'에 매핑. 차별점 3가지(자금 4분리·계산은 코드/설명만 AI·근거 확인 상품만 은행 후보)와 실측 현황, **구현하지 않은 것 6항목**을 명시했다. 블록체인 제외 이유를 트랙 5.3 공식 예시에 블록체인 항목이 없다는 사실로 적었다.
+- **시연 대본** `docs/demo-script.md`: 3분 구성. 모든 입력값과 기대 수치를 엔진으로 재검산해 대본대로 넣으면 화면에 그대로 나오게 했다(최초안 월세 250만 → 조달필요 3,160만 / 현재안 100만 → 2,260만·부족액 0원). 홈 문장을 '예산 4천만'으로 바꿔 자기자본 프리필과 일치시켰다(intent 실측 `budget_krw` 40,000,000). '하지 말 것' 4항목과 예상 질문 5개 포함.
+- **참가신청서 개정** `docs/application_form.md`: 폐업률 감소·실제 신청 가능·은행 연계 구조 등 미검증 단정을 제거하고 대상을 계약 검토 예비창업자로 좁혔다. 기존 사업자 운영 개선은 범위에서 제외 표기.
+- **미결**: 참가서약서·개인정보 동의서(주최 양식 필요), 배포 실행(9/20 예정), 시연 영상 녹화, 온라인 접수.
+
+### 백엔드·프론트 — T7 상담 세션 배선, 대구신보 원문 대조, 참고자료 표시
+
+- **T7 상담 세션 서버 기록**: 상담자료를 만드는 시점(`/analysis` 제출)에 세션과 계획안을 서버에 남긴다. **화면 상태의 정본은 여전히 `sessionStorage`**(§5-3 유지)이며 서버 기록은 감사·재현용 스냅샷이다 — 리포트는 이 값을 읽지 않고 13필드로 다시 계산한다. 저장 실패는 삼켜 상담자료 생성을 막지 않는다(`void` 호출). **새 백엔드 API는 만들지 않았다** — `POST /consultation`·`PUT /{id}/plans/{kind}`·`GET /{id}`가 스키마 작업 때 이미 있었고, 프론트에 `apiPut`만 추가했다. 기록 시점을 계산마다가 아니라 상담자료 생성 시 한 번으로 잡은 이유: 세션 갱신 엔드포인트가 없어 `selected_plan_kind`·`change_reason`이 생성 시점 값으로 고정되는데, 사용자가 최종 선택을 끝낸 순간이 그 값이 가장 정확하다. 실측: 세션 1행·계획 2행 생성, 같은 `plan_kind` 재전송 멱등(행 증가 없음), GET 왕복에서 선택안·변경 이유·미확인 등록여부(null) 복원 확인 후 합성 데이터 삭제.
+- **mock SSE handoff 섹션**: `NEXT_PUBLIC_API_BASE` 없이 프론트만 띄우면 `purpose=handoff`로 보내도 옛 review 리포트가 나왔다. SSE 요청에 `analysis_id`만 실리므로 `analysis-purpose.ts`에 1회 소비 Map을 두어 POST가 기억하고 GET이 꺼낸다(실백엔드 `InMemoryAnalysisRequestStore`와 같은 규칙). 수치는 지어내지 않고 재무 엔진으로 검산 — 대구 대신동 카페, 월세 250만(조달 필요 3,160만) → 100만(2,260만), 부족액 660만 → 0원.
+- **대구신보 TLS 문제 해결**: `dgsinbo.or.kr`이 **중간 인증서를 보내지 않는 서버 설정 오류**(leaf만 전송)였다. 검증을 끄지 않고 leaf의 AIA에서 발급자(Sectigo) 중간 인증서를 받아 번들에 넣어 정식 검증했다 — `--insecure` 미사용. 상품 상세는 래퍼 페이지에 서버 렌더되며 내부 경로 `/guaranteegoods/detail.tc` 직접 호출은 404다. 재현 절차는 조사 문서 §0.
+- **재단 4건 원문 대조 결과 — 은행 명시 없음**: `gdsNo=35·36·5` 취급은행 "**시중은행**", `gdsNo=30` "**출연 금융기관**". 네 건 모두 iM뱅크 명시가 없어 `unverified`로 남겼다(`none`이 아니다 — 은행 취급은 하되 어느 은행인지 원문이 안 밝힌다). **iM뱅크 상담 후보는 여전히 3건.** 다만 확인된 사실은 기록했다: dgsinbo-3(유망 예비창업자 사전보증)은 **사업자등록 전 신청 가능**(통지 후 6개월 내 등록증 제출)이며 창업교육 10시간·컨설팅 2회 이상 또는 지식재산권 사업화, 신용평점 NICE 755·KCB 670 이상이 조건. dgsinbo-4는 "대구광역시에 사업자등록을 한"이라 등록 필요 `true`. 12건 중 **7건에 메타데이터, 5건 미확인**(이후 3차 대조로 12건 전부 완료 — 아래 항목).
+- **'차선 후보' 표시 신설**(§5-2 허용, 사용자 결정 '**iM뱅크 최우선, 없으면 차선으로**'): 조사 결과 주 사용자(예비창업자)에게 가장 맞는 상품(dgsinbo-3)이 `unverified`라 화면에 아무것도 안 나오는 상태가 됐다. `GET /matching/consultation?include_unverified=true`로 근거 미확인 상품도 받아 **iM뱅크에서 상담할 상품 / 차선 후보 두 그룹으로 분리 표시**한다. 은행 연결 등급(direct → linked → unverified)이 기존 보증→은행→정책 정렬보다 **먼저** 적용되고, 같은 등급 안에서만 기존 정렬이 유지된다. 참고자료에도 자격 조건은 똑같이 적용하고, `none`(은행 취급 없음 확인)은 참고자료에도 넣지 않는다. 카드 배지는 '근거 미확인'.
+- **정직성 구분 1건**: 참고자료 사유를 두 가지로 나눴다 — 원문을 본 적 없는 것은 "**공식 원문을 아직 확인하지 못함**", 보았는데 은행이 안 적힌 것은 "**공식 원문에 취급 은행이 명시되지 않음(시중은행 등으로만 표기)**". 확인하지 않은 것을 확인한 것처럼 쓰지 않기 위해서다. 실서버 확인: 재단 4건은 후자, youth-2·3·4는 전자.
+- **3차 대조 — 나머지 5건 완료(12/12)**: dgsinbo-5는 뉴스핌 기사에 **"아이엠뱅크 화원지점"**, youth-1은 기업마당 공고에 **"아이엠뱅크 북구청지점"**이 취급처로 명시돼 `linked`로 올렸다. youth-2(중진공 청년전용창업자금)는 금융기관 표기가 없고 **"창업을 준비 중인 자"**를 포함해 등록 전 신청 가능(`business_registration_required: false`), 절차 4단계 확인. youth-3·4(2026 대구시 경영안정자금, 공고 2026-09-16)는 **보증드림 사전 예약 필수**이며 필수 서류 3종(융자추천신청서·사업자등록증·1년분 과세표준증명원)을 확인했다 — 과세표준증명원 요구가 예비창업자를 배제한다. 최종 분포 **direct 2 · linked 3 · unverified 7**. 등급 기준은 은행 자사 고시=`direct`, 제3자 공고·보도의 은행명 명시=`linked`로 일관 적용했다.
+- **그런데 화면 후보는 여전히 3건이다**: 새로 `linked`가 된 dgsinbo-5(달성군)·youth-1(북구)이 **지역 한정이라 `category: []`로 인코딩**돼 있고, 이는 '해당 업종 없음=모두 탈락'이라 제외된다(§5-2가 정한 처리). 현재 매처가 지역 조건을 보지 않아 전부 제외하는 쪽을 택한 상태다. 지역 매칭을 넣으면 해당 지역 사용자에게 보여줄 수 있다 — 후속 과제로 기록.
+- **테스트**: 백엔드 **441 passed/1 skipped**, 프론트 **184 passed/39 files**, tsc clean, build 성공. 실백엔드 E2E `funnel.cjs`·`analysis.cjs` 전 구간 PASS(analysis 20단계, 15.9초).
+- **미결**: ① 재단 4건의 실제 취급은행 목록을 재단에 문의 — iM뱅크가 포함되면 `linked`로 승격 가능(특히 dgsinbo-3). ② 나머지 5건(dgsinbo-5·youth-1~4) 원문 미대조. ③ 세션 갱신 엔드포인트 없음 — 선택안·변경 이유는 생성 시점 값으로 고정. ④ `consultation_note`·`consultation_document` 2테이블 여전히 미사용 — assumptions·open_questions는 `/analysis` 요청으로만 가고 세션에는 안 남는다.
+
+### 백엔드 — DB 스키마 19 → 29테이블 (금융상품·외부 데이터셋·지표·상담)
+
+- **범위**: 설계 확정안 `docs/superpowers/specs/2026-09-18-schema-migration-design.md`에 따라 신규 BC 4개(`apps/product` 4테이블 · `apps/dataset` 1 · `apps/indicator` 1 · `apps/consultation` 4)를 추가. 작업 A·B·C 병렬 → D(마이그레이션) → E(문서) 순서. **기존 19테이블 컬럼은 하나도 바꾸지 않았다.**
+- **사용자 결정 정정**: iM뱅크 전환 계획 §0의 "새 DB 테이블…을 추가하지 않는다" 중 **DB 테이블 항목만** 덮음. 로그인·은행 API·채팅 전용 서버는 여전히 추가하지 않음. 해당 줄에 정정 주석을 달았다.
+- **마이그레이션 `b93358fab70e`** (down_revision `66a23fb0c6e9`): 연산이 `create_table` **10** + `create_index` **8**뿐이고 기존 테이블 대상 `alter_column`·`drop_*`은 **0건**. `alembic upgrade head` 후 `alembic check` → `No new upgrade operations detected.` 다운그레이드 왕복 성공(FK 순서 오류 없음). `rag_chunk`의 HNSW 인덱스는 drop되지 않음(ORM 선언 유지 덕분).
+- **`regional_indicator` UNIQUE 실측 DDL**: `CREATE UNIQUE INDEX … USING btree (dataset_id, region_code, industry_id, period, indicator_key, breakdown) NULLS NOT DISTINCT` — 업종 무관(`industry_id` NULL)·슬라이스 없음(`breakdown` NULL) 행의 중복 적재를 PG15+ 기능으로 차단. PG17 컨테이너라 사용 가능.
+- **상품 로더 회귀 확인**: 상품 12건 시드 후 `load_all_products()`가 돌려준 **15필드 dict가 JSON 폴백 경로와 완전히 동일**. `category` 3상태(`None` 업종무관 / `[]` 전부탈락 / `[...]` 해당업종)가 DB 왕복 후에도 구분됨 — 판별자 컬럼 `finance_product.category_restricted`가 담당. `matcher.match_products`는 미수정.
+- **테스트**: 전체 **392 passed / 1 skipped**. 상품 시드가 **있는 상태와 없는 상태 양쪽**에서 확인했다. 순서·상태 의존 결함은 `tests/test_matching.py`를 `load_all_products_from()` seam(Port 주입)으로 고쳐 해소.
+- **ERD 문서 신규 작성** `docs/erd.md`: 29테이블 그룹별 mermaid `erDiagram` 5개 + 엣지 전체 표 + 역정규화 근거 표(전부 ORM docstring 인용) + 신규 테이블 설계 판단(long format·3상태 보존·1:1 분리·NULLS NOT DISTINCT) + 적재/연결/표시 3단계 상태표. 기존 ORM docstring 6곳 이상이 `docs/erd.md`를 참조했지만 실제 파일은 없었다(원천 프로젝트 유산) — 이번에 새로 씀.
+- **고립 테이블 2건 실측**: 메타데이터 덤프 결과 FK가 in·out 모두 0인 테이블은 `interest_rate`(전국 시계열 — docstring이 "region/industry와 직접 엣지 없이 애플리케이션 조인"으로 의도된 미연결 명시)와 `funding_program`(`funding_program_industry` M:N이 LLM 추출 후속으로 미생성, `rag_chunk`는 다형 참조라 FK 아님). **둘 다 기존 19테이블**이며 `backend/CLAUDE.md` §13 연결 원칙 위반 상태를 문서에 그대로 적었다.
+- **교차 BC 엣지 1건 기록**: `apps/matching`의 `manual_product_gateway.py`가 `apps/product`의 `SqlAlchemyFinanceProductRepository`(Adapter)·`FinanceProduct`(Entity)를 직접 import — §11 BC 분리·§7 "Business logic imports Ports, never Adapters" 기준 약한 지점. 완화 요인은 `_to_dict()`가 ACL 역할을 해 matching 도메인이 dict만 보는 것과 `load_all_products_from(port)` seam. 후속 정리 과제로 남기고 **코드는 고치지 않았다**(코드 프리즈 전 `GET /matching` 응답 보존 우선).
+- **미결·주의**: ① 마이그레이션은 **테스트 DB에서만 검증**했다. 개발 DB(5437 `localhostdaegu`)는 `66a23fb0c6e9`·20테이블 그대로다. ② `external_dataset`·`regional_indicator`는 **빈 테이블**이고 센터 D1(삼성카드)·D2(SKT)는 **미신청·미확보** — 스키마 존재를 데이터 확보로 쓰지 않는다. ③ 상담 API는 POST/GET 왕복만 동작하고 **프론트는 여전히 `sessionStorage`**다. ④ `consultation_document.content_hash`는 sha256 변경 확인용이며 **블록체인 앵커링은 미구현**. ⑤ 재무 엔진 미수정 — `reserve_months`·`operating_reserve`·`total_required_funds`·`external_funding_need`는 T1 전까지 0이며 계산 결과로 읽으면 안 된다(제약이 `consultation_repository.py`·`consultation_port.py`·`consultation_entity.py` docstring에 명시). ⑥ `finance_product_category`·`product_consultation_metadata`·`product_procedure_step`은 현재 0행(상품 JSON에 업종·절차 값이 없음).
+
 ### 백엔드 — whole-branch 최종 리뷰(d62089e..7d4d264)와 수정 반영
 
 - **리뷰 방식**: 백엔드 460파일·약 13,600줄이라 3영역으로 나눠 병렬 리뷰(opus, 읽기 전용) — A 핵심·지표·재무(master·metric·finance·matching·intent·core·migrations) / B 수집기·크론(store·rent·convenience·tobacco·news·funding·scripts) / C 충격·RAG. `analysis`는 9/17 별도 리뷰 완료라 제외. 3영역 모두 "수정 후 머지", Critical 0.

@@ -48,10 +48,10 @@
   url: /decisions/
 - id: WBS-010
   title: "① 기간 일치"
-  status: 예정
+  status: 완료
   assignee: 김충식
-  output: "지도에서 고른 연도가 요약·위험도·AI 분석까지 같은 기준으로 반영"
-  url: /progress/
+  output: "지도 선택 연도를 분석 요청 → 지표 카드·위험도까지 같은 기준으로 전달. 캐시 프록시에서 끊기던 결함은 모델 평가 하네스가 찾아 수정"
+  url: /journal/2026/09/18/consultation-handoff-model-eval/
 - id: WBS-011
   title: "② AI 진행 표시"
   status: 예정
@@ -60,10 +60,10 @@
   url: /progress/
 - id: WBS-012
   title: "③ 자금 점검 동선·계산 가정 표시"
-  status: 예정
-  assignee: 류준
-  output: "예산 점검을 주 동선으로 두고 6개월 고정비·시나리오 배수 등 가정을 화면에 표시"
-  url: /progress/
+  status: 완료
+  assignee: 김충식(류준 배정분, 사용자 결정으로 선행)
+  output: "계약 전 창업자금 사전상담을 주 동선으로 전환(T1~T7). 계산 가정·미입력 항목을 확인 목록에 표시"
+  url: /journal/2026/09/18/consultation-handoff-model-eval/
 - id: WBS-013
   title: "④ 데이터 신뢰 표시"
   status: 예정
@@ -74,8 +74,8 @@
   title: "⑤ localhostdaegu.cloud 배포"
   status: 예정
   assignee: "김충식(BE) · 류준(FE)"
-  output: "배포 주소에서 전체 흐름과 AI 리포트 실시간 전송 확인, 9/19 18:00 코드 프리즈"
-  url: /showcase/
+  output: "구조 확정(Vercel + Cloudflare Tunnel)·가이드·CORS 환경변수화까지 완료. 네임서버 이전과 배포 실행이 남음"
+  url: /docs/architecture/
 - id: WBS-015
   title: "⑦ 시연 영상"
   status: 예정
@@ -106,3 +106,33 @@
   assignee: 장민석(키 관리)
   output: "키 재발급·교체 후 다음 정기 수집에서 정상 동작 확인"
   url: /journal/2026/09/18/final-review-team-split/
+- id: WBS-019
+  title: 창업자금 사전상담 전환(T1~T7)과 상담 세션 서버 기록
+  status: 완료
+  assignee: 김충식
+  output: "자금 4분리·최초안/현재안 비교·상담자료 Markdown·세션/계획/문서 기록·iM뱅크 우선 후보와 차선 후보 분리"
+  url: /journal/2026/09/18/consultation-handoff-model-eval/
+- id: WBS-020
+  title: DB 스키마 19 → 29테이블과 ERD 문서
+  status: 완료
+  assignee: 김충식
+  output: "금융상품·외부 데이터셋·지표·상담 4영역 추가, 기존 컬럼 무변경, 마이그레이션 왕복·alembic check 통과, 고립 테이블 2건 감시 테스트"
+  url: /journal/2026/09/18/consultation-handoff-model-eval/
+- id: WBS-021
+  title: 제출 문서 4종과 배포 가이드
+  status: 완료
+  assignee: 김충식
+  output: "배포 런북·제안요약서·시연 대본(수치 재검산)·참가신청서 개정안, Vercel + Cloudflare Tunnel 초보자용 가이드"
+  url: /showcase/
+- id: WBS-022
+  title: 오프라인·온라인 가용성 모델 평가(임베딩·LLM)
+  status: 완료
+  assignee: 김충식
+  output: "로컬 3종·외부 6종 임베딩, 로컬 3종·외부 1종 LLM을 같은 조건으로 평가. 대체는 qwen3-embedding:4b@2560·gemma4:12b, 동주 11.6 GiB 확인"
+  url: /docs/model-evaluation/
+- id: WBS-023
+  title: 평가셋 검수와 오프라인 전환 결정(마감 후)
+  status: 예정
+  assignee: 김충식
+  output: "평가셋 80건 검수·confirmed 승격, 색인 컬럼 2560차원 마이그레이션·전량 재색인, 자동 폴백 설계 여부"
+  url: /docs/model-evaluation/

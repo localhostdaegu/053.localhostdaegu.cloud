@@ -12,7 +12,7 @@ owner: 담당 장민석 · PM/아키텍트
 
 <div class="notice"><strong>문서 읽는 순서</strong><br>프로젝트 개요로 방향을 확인한 뒤, 요구사항 → 상위 설계 → 상세 설계 → 테스트 → 검수 → 출품 순서로 읽어 주세요. 요구사항·설계·테스트·검수 문서는 9월 18일 서비스 저장소 main의 코드와 로컬 실행 결과를 기준으로 고쳐 썼습니다. 배포 환경 검증과 코드 프리즈 전 보완(P0)은 아직 반영 전이며, 날짜별 변화는 <a href="{{ '/journal/' | relative_url }}">개발 기록</a>과 <a href="{{ '/progress/' | relative_url }}">진행 현황</a>에서 확인할 수 있습니다.</div>
 
-<div class="doc-links"><a class="doc-link" href="{{ '/docs/overview/' | relative_url }}">프로젝트 개요 <span>확정한 방향, 처음 검토한 세 주제, 범위 기준</span></a><a class="doc-link" href="{{ '/docs/hackathon/' | relative_url }}">해커톤 안내 <span>참가 트랙, 공식 일정, 접수 준비, 활용 데이터</span></a></div>
+<div class="doc-links"><a class="doc-link" href="{{ '/docs/overview/' | relative_url }}">프로젝트 개요 <span>확정한 방향, 처음 검토한 세 주제, 범위 기준</span></a><a class="doc-link" href="{{ '/docs/hackathon/' | relative_url }}">해커톤 안내 <span>참가 트랙, 공식 일정, 접수 준비, 활용 데이터</span></a><a class="doc-link" href="{{ '/docs/model-evaluation/' | relative_url }}">모델 평가 <span>오프라인(로컬)·온라인(Gemini) 임베딩·LLM 가용성 평가</span></a></div>
 
 ## 산출물 목차
 
