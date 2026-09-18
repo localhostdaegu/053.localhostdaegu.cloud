@@ -1,12 +1,11 @@
 ---
 layout: document
 title: 모델 평가 — 오프라인·온라인 가용성
-parent: 프로젝트 문서
-nav_order: 9
+nav_order: 4
 permalink: /docs/model-evaluation/
 description: 외부 API(Gemini)와 로컬 모델(Ollama)을 같은 코퍼스·질문·프롬프트로 나란히 평가한 기록입니다.
 status: 임베딩·LLM 평가 완료 · 오프라인 전환 전
-updated: "2026-09-18"
+updated: "2026-09-19"
 owner: 담당 김충식
 ---
 

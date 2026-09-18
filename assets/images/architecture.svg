@@ -1,15 +1,15 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 600" role="img" aria-labelledby="title desc">
-  <title id="title">localhostdaegu 시스템 흐름 — 2026-09-18 main 기준</title>
-  <desc id="desc">예비 창업자가 Next.js 프론트엔드에서 질문과 재무 입력을 보내면 FastAPI 백엔드의 입력 해석, 상권 진단, 자금 계산·매칭, AI 리포트 모듈이 처리합니다. 데이터는 PostgreSQL과 pgvector에 저장되고, 정기 수집이 외부 공공 데이터를 적재합니다. AI 리포트는 Gemini API로 해석 문단을 생성합니다. 배포 전 로컬 구성입니다.</desc>
+  <title id="title">localhostdaegu 시스템 흐름 — 2026-09-18 사전상담 기준</title>
+  <desc id="desc">질문과 지도 선택에서 자금계획 비교·선택, 상담자료로 이어집니다. FastAPI가 상품 조회와 계산을 처리하고, 화면 초안은 sessionStorage, 상담 기록과 상품은 PostgreSQL에 저장합니다. 기본 AI는 Gemini이며 로컬 대체 모델은 평가 완료·전환 전입니다. 배포 전 로컬 구성입니다.</desc>
   <defs><marker id="arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0 0 10 5 0 10Z" fill="#80998b"/></marker></defs>
   <style>text{font-family:"Noto Sans KR",sans-serif;fill:#304d40} .label{font-size:14px;font-weight:600} .small{font-size:11px;fill:#667e70} .edge{fill:none;stroke:#80998b;stroke-width:1.6;marker-end:url(#arrow)} .box{stroke-width:1.2}</style>
   <rect width="900" height="600" fill="#fff"/>
-  <text x="24" y="28" class="small" style="letter-spacing:2px">SYSTEM FLOW / MAIN 2026-09-18 · LOCAL</text>
+  <text x="24" y="28" class="small" style="letter-spacing:2px">SYSTEM FLOW / CONSULTATION 2026-09-18 · LOCAL</text>
   <rect class="box" x="60" y="55" width="220" height="66" rx="9" fill="#f3f5f0" stroke="#d3ded2"/>
   <text class="label" x="170" y="81" text-anchor="middle">예비 창업자</text><text class="small" x="170" y="103" text-anchor="middle">한 문장 질문 · 재무 입력</text>
   <path class="edge" d="M280 88H322"/>
   <rect class="box" x="330" y="55" width="510" height="66" rx="9" fill="#f1f4f2" stroke="#cad7cd"/>
-  <text class="label" x="585" y="81" text-anchor="middle">프론트엔드 · Next.js (:3300)</text><text class="small" x="585" y="103" text-anchor="middle">채팅 첫 화면 → 지도·진단 → 자금 시뮬레이션·결론 → AI 리포트</text>
+  <text class="label" x="585" y="81" text-anchor="middle">프론트엔드 · Next.js (:3300)</text><text class="small" x="585" y="103" text-anchor="middle">질문 → 지도 선택 → 자금계획 비교·선택 → 상담자료 · 초안 sessionStorage</text>
   <path class="edge" d="M585 121V162"/><text class="small" x="600" y="146">REST · SSE</text>
   <rect class="box" x="60" y="170" width="780" height="170" rx="10" fill="#fafbf8" stroke="#d3ded2"/>
   <text class="label" x="80" y="198">백엔드 · FastAPI (:8300)</text><text class="small" x="260" y="198">헥사고날 구조 · 기능별 bounded context</text>
@@ -18,18 +18,18 @@
   <rect class="box" x="270" y="215" width="172" height="100" rx="9" fill="#e8f4ed" stroke="#80bba1"/>
   <text class="label" x="356" y="243" text-anchor="middle">상권 진단</text><text class="small" x="356" y="266" text-anchor="middle">master · store · metric</text><text class="small" x="356" y="286" text-anchor="middle">지표 · 위험도(상대 순위)</text>
   <rect class="box" x="460" y="215" width="172" height="100" rx="9" fill="#f0ebf7" stroke="#b7a3cf"/>
-  <text class="label" x="546" y="243" text-anchor="middle">자금 계산·매칭</text><text class="small" x="546" y="266" text-anchor="middle">finance · matching</text><text class="small" x="546" y="286" text-anchor="middle">부족 자금 · 상품 12건</text>
+  <text class="label" x="546" y="243" text-anchor="middle">자금 계산·매칭</text><text class="small" x="546" y="266" text-anchor="middle">finance · matching · product</text><text class="small" x="546" y="286" text-anchor="middle">자금 구성 · 지역별 상담 후보</text>
   <rect class="box" x="650" y="215" width="172" height="100" rx="9" fill="#f8f1e4" stroke="#d6b878"/>
-  <text class="label" x="736" y="243" text-anchor="middle">AI 리포트</text><text class="small" x="736" y="266" text-anchor="middle">analysis · rag · shock</text><text class="small" x="736" y="286" text-anchor="middle">코드 수치 + AI 해석</text>
-  <path class="edge" d="M210 340V382"/><text class="small" x="224" y="366">조회</text>
+  <text class="label" x="736" y="243" text-anchor="middle">상담자료·지역 분석</text><text class="small" x="736" y="266" text-anchor="middle">analysis · rag · consultation</text><text class="small" x="736" y="286" text-anchor="middle">코드 계산·비교 + AI 설명</text>
+  <path class="edge" d="M210 340V382"/><text class="small" x="224" y="366">조회 · 상담 기록</text>
   <path class="edge" d="M736 340V382"/><text class="small" x="750" y="366">해석 문단 · 임베딩</text>
   <rect class="box" x="60" y="390" width="300" height="80" rx="9" fill="#eaf0f4" stroke="#9db5c9"/>
-  <text class="label" x="210" y="420" text-anchor="middle">PostgreSQL 17 + pgvector</text><text class="small" x="210" y="444" text-anchor="middle">인허가·지표·경계·인구·임대료·금리</text><text class="small" x="210" y="460" text-anchor="middle">지원사업·뉴스·충격 이벤트·RAG 색인</text>
+  <text class="label" x="210" y="420" text-anchor="middle">PostgreSQL 17 + pgvector</text><text class="small" x="210" y="444" text-anchor="middle">원천·지표·상품·RAG · 총 29테이블</text><text class="small" x="210" y="460" text-anchor="middle">상담 세션·계획·노트·문서 해시</text>
   <rect class="box" x="400" y="390" width="200" height="80" rx="9" fill="#f3f5f0" stroke="#d3ded2"/>
   <text class="label" x="500" y="420" text-anchor="middle">정기 수집 (cron)</text><text class="small" x="500" y="444" text-anchor="middle">뉴스 매시 · 인허가·공고·색인 매일</text><text class="small" x="500" y="460" text-anchor="middle">금리·임대료 주 1회</text>
   <path class="edge" d="M400 430H368"/>
   <rect class="box" x="640" y="390" width="200" height="80" rx="9" fill="#f8f1e4" stroke="#d6b878"/>
-  <text class="label" x="740" y="420" text-anchor="middle">Gemini API</text><text class="small" x="740" y="444" text-anchor="middle">gemini-3.8-flash</text><text class="small" x="740" y="460" text-anchor="middle">gemini-embedding-001</text>
+  <text class="label" x="740" y="420" text-anchor="middle">Gemini API (기본)</text><text class="small" x="740" y="444" text-anchor="middle">로컬 대체: gemma4 · qwen</text><text class="small" x="740" y="460" text-anchor="middle">평가 완료 · 검색 전환 작업 남음</text>
   <rect class="box" x="400" y="510" width="440" height="62" rx="9" fill="#f1f4f2" stroke="#cad7cd"/>
   <path class="edge" d="M500 510V478"/>
   <text class="label" x="620" y="536" text-anchor="middle">외부 공공 데이터</text><text class="small" x="620" y="558" text-anchor="middle">인허가 · 브이월드 · R-ONE · ECOS · 기업마당 · 온통청년 · 구글 뉴스 RSS</text>

@@ -16,4 +16,4 @@ owner: 담당 장민석 · PM
 {% assign columns = '논의 중,예정,완료' | split: ',' %}
 {% for column in columns %}{% assign tasks = site.data.tasks | where: 'status', column %}<section class="board-column"><h3>{{ column }} <span>{{ tasks.size }}</span></h3>{% for task in tasks %}<article class="task-card"><span class="task-id">{{ task.id }}</span><a href="{{ task.url | relative_url }}">{{ task.title }}</a><p>{{ task.output }}</p><span class="task-owner">담당 {{ task.assignee }}</span></article>{% else %}<p class="board-empty">아직 완료로 등록한 작업이 없습니다.</p>{% endfor %}</section>{% endfor %}
 </div>
-<p><a href="{{ '/docs/milestones/' | relative_url }}">WBS와 완료 조건 →</a> · <a href="{{ '/decisions/' | relative_url }}">미결·결정 기록 →</a></p>
+<p><a href="{{ '/docs/milestones/' | relative_url }}">WBS와 완료 조건 →</a> · <a href="{{ '/decisions/' | relative_url }}">논의와 결정 →</a></p>

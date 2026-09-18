@@ -1,4 +1,4 @@
-updated: "2026-09-18"
+updated: "2026-09-19"
 phase: 프로토타입 보완·배포·접수 준비
 track: 소상공인·골목상권 디지털 금융
 topics:
@@ -14,7 +14,7 @@ topics:
     label: STARTUP CONNECTION
     color: violet
     question: "나의 창업 조건에 맞는 기회는 어디에 있을까?"
-    description: 창업 비용과 자기자본으로 부족 자금을 계산하고, 조사한 금융상품 12건 중 조건에 맞는 상품을 보증 → 은행 → 정책자금 순으로 연결합니다.
+    description: 총 준비자금·자기자본 외 조달 필요액·희망대출 반영 후 부족액을 구분하고 계산안을 비교합니다. 조사한 상품 12건 중 iM뱅크 연결 근거가 있는 후보를 우선 표시하고, 미확인 상품은 차선 후보로 구분합니다.
     requirement: REQ-002
   - number: "03"
     name: 골목상권 AI 컨설팅

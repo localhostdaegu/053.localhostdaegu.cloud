@@ -1,27 +1,17 @@
 ---
 layout: document
 title: 프로젝트 안내
-nav_order: 8
+nav_order: 9
 permalink: /about/
-description: beyondbob 문서 사이트의 목적과 참고한 구성, 업데이트 원칙을 설명합니다.
+description: beyondbob 문서 사이트의 목적과 업데이트 원칙을 설명합니다.
 status: 운영 중 · 수동 갱신
-updated: "2026-09-18"
+updated: "2026-09-19"
 owner: 담당 beyondbob 공동
 ---
 
 ## 이 사이트의 역할
 
 `053.localhostdaegu.cloud`는 beyondbob의 해커톤 문서와 진행 기록을 모으는 공간입니다. 서비스 기획부터 설계·검증·출품까지의 근거를 연결합니다.
-
-## 참고한 사이트
-
-| 사이트 | 참고한 구성 |
-|---|---|
-| [redoceanmap 개발 기록](https://blog.redoceanmap.com/posts/) | 마일스톤별 선택 이유·실험 결과·회고 |
-| [solidbob 문서](https://docs.solidbob.cloud/) | 개발 산출물·칸반·미결 항목 연결 |
-| [Life Tutorial](https://lifetutorial.beyondfacade.cloud/) | 계층형 문서 탐색·일정·검증·출품 자료 |
-
-문서 체계는 제공된 산출물 목차 이미지 3장을 기준으로 구성했습니다. 화면은 beyondbob의 색상과 타이포그래피로 구성하고, [Just the Docs](https://just-the-docs.com/)의 문서 탐색과 검색을 사용합니다.
 
 ## 업데이트 원칙
 

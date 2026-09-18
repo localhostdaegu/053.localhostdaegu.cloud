@@ -49,6 +49,7 @@ exclude:
   - vendor
   - node_modules
   - docs/superpowers
+  - scripts
   - 2026_AI_Blockchain_Challenge_Daegu.md
   - jekyll.md
   - "*.png"

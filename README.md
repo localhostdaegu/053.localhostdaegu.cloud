@@ -2,7 +2,7 @@
 
 2026 AI Blockchain Challenge in Daegu 참가 준비를 위한 Jekyll 프로젝트 허브입니다.
 
-- **팀:** beyondbob / 김충식 · 류준 · 장민석
+- **팀:** beyondbob / 장민석 · 김충식 · 류준
 - **트랙:** 소상공인·골목상권 디지털 금융
 - **서비스:** localhostdaegu — 창업 금융 네비게이터(청년창업 매칭 + 골목상권 AI 컨설팅, 세무·매출은 제외)
 - **역할:** 장민석 팀장·PM/아키텍트 · 김충식·류준 기능 단위 풀스택
@@ -45,8 +45,9 @@ bundle exec jekyll build --trace
 |---|---|
 | `index.html` | 프로젝트 홈 |
 | `docs/` | 개요·해커톤·WBS·요구사항·설계·테스트·검수 |
+| `docs/model-evaluation.md` | 독립 최상위 메뉴인 모델 평가(진행 현황과 개발 기록 사이). 기존 `/docs/model-evaluation/` 주소 유지 |
 | `progress.html` | 공통 일정과 작업 데이터를 표시하는 현황 |
-| `decisions.md` | 미결 항목과 결정 이유 |
+| `decisions.md` | 논의와 결정(팀 소개와 프로젝트 안내 사이). 미결 항목과 결정 이유 |
 | `journal.html`, `_posts/` | 최신순 개발 기록 |
 | `showcase.md` | 출품 시나리오·자료 준비 상태 |
 | `team.html`, `_data/team.yml` | 팀 소개와 프로필 데이터 |
@@ -55,6 +56,9 @@ bundle exec jekyll build --trace
 | `_data/deliverables.yml` | 홈과 문서 목차가 공유하는 산출물 목록 |
 | `_layouts/`, `_includes/` | 공통 문서·기록 레이아웃과 브랜드 |
 | `assets/css/beyondbob.css` | 사이트 반응형 스타일 |
+| `assets/css/home.css` | 홈 전용 쇼케이스 스타일 |
+| `assets/images/neighborhood*.webp` | Blender로 제작한 골목 모형, 데스크톱·모바일용 |
+| `scripts/render-neighborhood.py` | 골목 모형 생성·렌더링 원본(Blender 5, 외부 에셋 없음). 공개 빌드 제외 |
 | `assets/js/search-language.js` | 검색 색인에서 한글을 보존하는 Lunr 확장 |
 | `assets/images/` | 원본 SVG 아이콘과 흐름도 |
 
