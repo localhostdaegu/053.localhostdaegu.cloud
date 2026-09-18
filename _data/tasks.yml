@@ -61,7 +61,7 @@
 - id: WBS-012
   title: "③ 자금 점검 동선·계산 가정 표시"
   status: 완료
-  assignee: 김충식(류준 배정분, 사용자 결정으로 선행)
+  assignee: 류준
   output: "계약 전 창업자금 사전상담을 주 동선으로 전환(T1~T7). 계산 가정·미입력 항목을 확인 목록에 표시"
   url: /journal/2026/09/18/consultation-handoff-model-eval/
 - id: WBS-013
@@ -109,19 +109,19 @@
 - id: WBS-019
   title: 창업자금 사전상담 전환(T1~T7)과 상담 세션 서버 기록
   status: 완료
-  assignee: 김충식
+  assignee: 류준
   output: "자금 4분리·최초안/현재안 비교·상담자료 Markdown·세션/계획/문서 기록·iM뱅크 우선 후보와 차선 후보 분리"
   url: /journal/2026/09/18/consultation-handoff-model-eval/
 - id: WBS-020
   title: DB 스키마 19 → 29테이블과 ERD 문서
   status: 완료
-  assignee: 김충식
+  assignee: 장민석
   output: "금융상품·외부 데이터셋·지표·상담 4영역 추가, 기존 컬럼 무변경, 마이그레이션 왕복·alembic check 통과, 고립 테이블 2건 감시 테스트"
   url: /journal/2026/09/18/consultation-handoff-model-eval/
 - id: WBS-021
   title: 제출 문서 4종과 배포 가이드
   status: 완료
-  assignee: 김충식
+  assignee: "장민석(제출 문서·배포 구조) · 김충식(배포 가이드)"
   output: "배포 런북·제안요약서·시연 대본(수치 재검산)·참가신청서 개정안, Vercel + Cloudflare Tunnel 초보자용 가이드"
   url: /showcase/
 - id: WBS-022
