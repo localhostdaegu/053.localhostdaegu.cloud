@@ -42,6 +42,12 @@ defaults:
       nav_exclude: true
       author: beyondbob
 
+include:
+  - assets/images/screens/home.png
+  - assets/images/screens/map.png
+  - assets/images/screens/simulate.png
+  - assets/images/screens/report.png
+
 exclude:
   - Gemfile
   - Gemfile.lock

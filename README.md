@@ -50,6 +50,8 @@ bundle exec jekyll build --trace
 | `decisions.md` | 논의와 결정(팀 소개와 프로젝트 안내 사이). 미결 항목과 결정 이유 |
 | `journal.html`, `_posts/` | 최신순 개발 기록 |
 | `showcase.md` | 출품 시나리오·자료 준비 상태 |
+| `showcase-screens.html` | 출품 자료 하위 구현 화면 · 실제 캡처 4장과 6단계 사용 흐름 |
+| `assets/images/screens/`, `assets/css/screens.css` | 서비스 저장소에서 가져온 화면 원본과 구현 화면 페이지 전용 스타일 |
 | `team.html`, `_data/team.yml` | 팀 소개와 프로필 데이터 |
 | `_data/project.yml` | 처음 검토한 세 주제·일정·사이트 기준일 |
 | `_data/tasks.yml` | WBS 작업·상태·담당·완료 조건 |

@@ -1,0 +1,98 @@
+---
+layout: document
+title: 구현 화면
+parent: 출품 자료
+nav_order: 1
+permalink: /showcase/screens/
+eyebrow: "SHOWCASE / PRODUCT WALKTHROUGH"
+description: 한 문장으로 시작해 자리를 고르고, 자금계획을 비교해 상담자료로 가져가기까지.
+status: 실제 화면 4장 · 로컬 실행 자료
+updated: "2026-09-19"
+owner: 담당 beyondbob 공동
+screens: true
+---
+
+<div class="screens-intro">
+  <p><strong>“중구에서 카페, 예산 4천만.”</strong><br>이 한 문장이 자리 선택, 자금 계산, 계획 비교, 상담 준비로 이어지는 과정을 소개합니다.</p>
+  <p>촬영일 <strong>2026.09.19</strong> · 환경 <strong>로컬 실백엔드 8300</strong> · 사례 <strong>대구 대신동 / 카페</strong></p>
+  <p>서비스 저장소의 출품용 자료에 포함된 실제 화면 캡처 4장입니다. 주변 설명이 함께 들어 있는 원본을 사용했으며, 이미지를 누르면 크게 볼 수 있습니다. 입력 금액은 시연용 가정이고, 운영 배포 완료를 증명하는 화면은 아닙니다.</p>
+</div>
+
+<nav class="screen-route" aria-label="화면 안내 순서">
+  <a href="#entry">01 조건 입력</a><a href="#location">02 자리 선택</a><a href="#finance">03 자금 계산</a><a href="#compare">04 계획 비교</a><a href="#candidates">05 상품 후보</a><a href="#report">06 상담자료</a>
+</nav>
+
+<section class="screen-section" id="entry">
+  <h2>01. 창업 조건 입력 — 한 문장으로 시작합니다</h2>
+  <p>홈에서 지역·업종·예산을 입력합니다. 예시 문장의 중구와 카페는 지도 탐색 조건이 되고, 예산 4천만 원은 사전상담의 자기자본 입력으로 이어집니다.</p>
+  <figure class="screen-figure">
+    <a href="{{ '/assets/images/screens/home.png' | relative_url }}" aria-label="홈 화면 원본 크게 보기"><img src="{{ '/assets/images/screens/home.png' | relative_url }}" alt="지역·업종·예산을 한 문장으로 입력하는 localhostdaegu 홈과 기능 설명" width="2048" height="1050" fetchpriority="high"></a>
+    <figcaption>홈 · 자유 입력에서 지도 탐색으로 이동하는 시작 화면. 예산은 매출 예측이 아니라 사용자가 제시한 자기자본입니다.</figcaption>
+  </figure>
+  <p class="screen-takeaway">사용자가 이미 말한 조건을 다음 화면에서도 이어 받아, 같은 정보를 다시 입력하는 부담을 줄입니다.</p>
+</section>
+
+<section class="screen-section" id="location">
+  <h2>02. 지도에서 자리 선택 — 지역의 근거를 봅니다</h2>
+  <p>지도에서 행정동을 선택하면 해당 업종의 점포 수·폐업률·성장률을 확인할 수 있습니다. 시연에서는 대신동을 선택하고 <strong>‘이 자리로 창업자금 사전상담’</strong>으로 이동합니다.</p>
+  <figure class="screen-figure">
+    <a href="{{ '/assets/images/screens/map.png' | relative_url }}" aria-label="지도 화면 원본 크게 보기"><img src="{{ '/assets/images/screens/map.png' | relative_url }}" alt="대구 행정동 지도와 대신동 카페 지표, 창업자금 사전상담 이동 버튼" width="2048" height="1050" loading="lazy"></a>
+    <figcaption>지도 · 선택한 지역의 지표와 사전상담 진입 버튼. 색상과 수치는 선택한 지표·연도에 따른 지역 비교 자료입니다.</figcaption>
+  </figure>
+  <p class="screen-takeaway">상권 위험도는 지역 간 상대적인 지표이지, 내 가게의 실패 확률이 아닙니다. 데이터가 없는 경우도 0과 구분합니다.</p>
+</section>
+
+<section class="screen-section" id="finance">
+  <h2>03. 창업자금 계산 — 필요한 돈을 나누어 봅니다</h2>
+  <p>사업자등록 여부와 창업 일정, 보증금·인테리어·설비·월세·인건비 등 비용을 입력합니다. 자기자본과 희망대출은 구분하며, 예상 월매출은 사용자가 설정한 가정으로 다룹니다.</p>
+  <figure class="screen-figure">
+    <a href="{{ '/assets/images/screens/simulate.png' | relative_url }}" aria-label="자금 계산과 계획 비교 화면 원본 크게 보기"><img src="{{ '/assets/images/screens/simulate.png' | relative_url }}" alt="창업 비용 입력 폼과 월세 변경 후 최초안·현재안을 선택하는 비교 화면" width="2048" height="1050" loading="lazy"></a>
+    <figcaption>사전상담 · 월세를 100만 원으로 바꿔 계산한 상태. 입력 아래에서 최초안과 현재안을 비교하고 상담할 안을 선택합니다.</figcaption>
+  </figure>
+  <p class="screen-takeaway">총 준비자금, 자기자본 외 조달 필요액, 희망대출 반영 후 부족액을 분리합니다. 계산은 코드가 담당하고 AI가 숫자를 만들어 채우지 않습니다.</p>
+</section>
+
+<section class="screen-section" id="compare">
+  <h2>04. 계획 비교와 선택 — 월세를 바꾸면 무엇이 달라질까요?</h2>
+  <p>위 화면의 핵심은 최초 계산을 남겨 두고 변경안을 비교하는 것입니다. 시연 대본에서 <strong>월세만 250만 원에서 100만 원으로</strong> 바꾸면 다음과 같이 달라집니다.</p>
+  <div class="screen-comparison">
+    <table>
+      <caption>시연 입력값 기준 · 단위: 만 원</caption>
+      <thead><tr><th scope="col">항목</th><th scope="col">최초안</th><th scope="col">현재안</th></tr></thead>
+      <tbody>
+        <tr><th scope="row">월세</th><td>250</td><td>100</td></tr>
+        <tr><th scope="row">손익분기 월매출</th><td>900</td><td>525</td></tr>
+        <tr><th scope="row">총 준비자금</th><td>7,160</td><td>6,260</td></tr>
+        <tr><th scope="row">자기자본 외 조달 필요</th><td>3,160</td><td>2,260</td></tr>
+        <tr><th scope="row">희망대출 반영 후 부족액</th><td>660</td><td>0</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <p>두 안 모두 자기자본 4,000만 원·희망대출 2,500만 원을 가정합니다. 보증금 2,000만 원, 인테리어 2,000만 원, 설비 1,000만 원 등 나머지 조건은 동일합니다. 실제 결과는 입력 조건에 따라 달라집니다.</p>
+  <p>입력만 수정하고 다시 계산하지 않았을 때는 이전 결과라는 경고를 띄우고 선택을 막습니다. 재계산 후 상담할 안을 고르고 변경 이유를 남깁니다.</p>
+  <p class="screen-takeaway"><strong>부족액 0원 ≠ 자기자본만으로 충분.</strong> 현재안도 외부에서 2,260만 원을 마련해야 합니다. 희망대출은 아직 확보된 돈이 아닙니다.</p>
+</section>
+
+<section class="screen-section" id="candidates">
+  <h2>05. 금융상품 후보 — 상담할 대상을 추립니다</h2>
+  <p>선택한 자금계획과 창업 조건을 바탕으로 상담 후보를 정리합니다. iM뱅크 취급 근거가 확인된 상품과 근거 미확인 후보를 구분하고, 확인이 필요한 조건은 상담 질문으로 남깁니다.</p>
+  <p>상품 후보 목록 전체를 펼친 별도 캡처는 이번 4장에 포함되지 않았습니다. 아래 상담자료 화면에서는 ‘상담 후보 정리’ 진행 상태를 확인할 수 있습니다.</p>
+  <p class="screen-takeaway">후보 안내는 대출 승인·한도·금리의 보장이 아닙니다. 실제 자격과 조건은 해당 기관의 공식 안내와 상담으로 확인해야 합니다.</p>
+</section>
+
+<section class="screen-section" id="report">
+  <h2>06. 상담자료 — 계산 근거와 질문을 한 문서로</h2>
+  <p>상담할 계획, 최초안과 현재안의 비교, 재무 계산표, 자금 후보, 상담에서 확인할 것, 지역 근거를 하나의 자료로 연결합니다. 화면 왼쪽에서는 지역 근거·뉴스·자금 계산 등의 진행 상태를 확인할 수 있습니다.</p>
+  <figure class="screen-figure">
+    <a href="{{ '/assets/images/screens/report.png' | relative_url }}" aria-label="상담자료 화면 원본 크게 보기"><img src="{{ '/assets/images/screens/report.png' | relative_url }}" alt="분석 진행 상태와 상담할 계획, 최초안·현재안 비교표가 표시된 상담자료 화면" width="2048" height="1050" loading="lazy"></a>
+    <figcaption>상담자료 · 상단 계획 요약과 비교표를 보여 주는 캡처입니다. 문서 전체와 다운로드·인쇄 결과가 모두 담긴 화면은 아닙니다.</figcaption>
+  </figure>
+  <p>계산표와 비교표는 코드의 결과를 사용하고, AI는 변경 이유의 설명과 상담 질문을 보조합니다. 모르는 항목은 임의의 값으로 채우지 않고 확인할 사항으로 남깁니다.</p>
+  <p>시연 대본의 마지막 단계는 Markdown 저장과 인쇄/PDF 저장, iM뱅크 공식 상담 안내로의 이동입니다. 자료는 사용자가 저장해 상담에 지참합니다.</p>
+  <p class="screen-takeaway">공식 안내 링크를 눌러도 상담자료가 은행으로 자동 전송되지 않습니다. 은행 제휴나 자동 접수를 의미하지 않습니다.</p>
+</section>
+
+<div class="screen-source">
+  <p><strong>자료 기준</strong> · 서비스 저장소 <code>docs/plan/screen-1-home.png</code>~<code>screen-4-analysis.png</code>와 <code>docs/demo-script.md</code>. 원본 이미지의 설명·건수는 촬영 시점 자료이며 이후 서비스 변경에 따라 달라질 수 있습니다. 이번 페이지 작업에서는 서비스를 새로 실행하거나 재촬영하지 않았습니다.</p>
+  <p><a href="{{ '/showcase/' | relative_url }}">출품 자료로 돌아가기 →</a> · <a href="{{ '/docs/detailed-design/' | relative_url }}">상세 설계 보기 →</a></p>
+</div>
