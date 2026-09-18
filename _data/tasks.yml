@@ -131,10 +131,10 @@
   output: "로컬 3종·외부 6종 임베딩, 로컬 3종·외부 1종 LLM을 같은 조건으로 평가. 대체는 qwen3-embedding:4b@2560·gemma4:12b, 동주 11.6 GiB 확인"
   url: /docs/model-evaluation/
 - id: WBS-023
-  title: 평가셋 검수와 오프라인 전환 결정(마감 후)
+  title: 평가셋 검수와 자동 폴백 설계(마감 후)
   status: 예정
   assignee: 김충식
-  output: "평가셋 80건 검수·confirmed 승격, 색인 컬럼 2560차원 마이그레이션·전량 재색인, 자동 폴백 설계 여부"
+  output: "평가셋 80건을 미만료 공고로 재추출·검수(confirmed 승격), 외부 API 실패 시 자동 폴백 설계 여부. 2560 마이그레이션·재색인·provider 설정화는 9/19 완료(DEC-026)"
   url: /docs/model-evaluation/
 - id: WBS-024
   title: 단기 폐업(30일 이내 종료) 집계 제외 반영
