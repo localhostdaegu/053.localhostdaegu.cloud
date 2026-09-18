@@ -1,5 +1,5 @@
-title: beyondbob
-description: 대구 소상공인·골목상권을 위한 AI 프로젝트. beyondbob의 기획, 설계, 검증과 개발 기록.
+title: localhost:daegu
+description: 대구 소상공인·골목상권을 위한 AI 프로젝트. localhost:daegu의 기획, 설계, 검증과 개발 기록.
 url: "https://053.localhostdaegu.cloud"
 baseurl: ""
 lang: ko
@@ -40,9 +40,10 @@ defaults:
     values:
       layout: post
       nav_exclude: true
-      author: beyondbob
+      author: localhost:daegu
 
 include:
+  - assets/images/localhost-daegu-logo.png
   - assets/images/screens/home.png
   - assets/images/screens/map.png
   - assets/images/screens/simulate.png

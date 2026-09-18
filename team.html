@@ -1,12 +1,12 @@
 ---
 layout: document
-title: 팀 beyondbob
+title: 팀 localhost:daegu
 nav_order: 7
 permalink: /team/
 eyebrow: THE PEOPLE BEHIND THE PROJECT
 description: 작은 가게와 새로운 시작을 위한 문제를 함께 찾고 만드는 세 사람입니다.
 status: 팀 구성·역할 분담 확정
-owner: 담당 beyondbob 공동
+owner: 담당 localhost:daegu 공동
 ---
 <div class="team-grid">{% for member in site.data.team %}<article class="member-card"><div class="member-avatar" aria-hidden="true">{{ member.initials }}</div><h2>{{ member.name }}</h2><span class="status-pill">{{ member.role }}</span><p>{{ member.description }}</p><small>{{ member.profile_status }}</small>{% if member.bio %}<p>{{ member.bio }}</p>{% endif %}{% if member.github %}<p><a href="{{ member.github | escape }}">GitHub ↗</a></p>{% endif %}</article>{% endfor %}</div>
 <h2>역할 분담 원칙</h2>

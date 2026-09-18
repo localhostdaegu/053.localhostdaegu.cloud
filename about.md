@@ -3,15 +3,15 @@ layout: document
 title: 프로젝트 안내
 nav_order: 9
 permalink: /about/
-description: beyondbob 문서 사이트의 목적과 업데이트 원칙을 설명합니다.
+description: localhost:daegu 문서 사이트의 목적과 업데이트 원칙을 설명합니다.
 status: 운영 중 · 수동 갱신
 updated: "2026-09-19"
-owner: 담당 beyondbob 공동
+owner: 담당 localhost:daegu 공동
 ---
 
 ## 이 사이트의 역할
 
-`053.localhostdaegu.cloud`는 beyondbob의 해커톤 문서와 진행 기록을 모으는 공간입니다. 서비스 기획부터 설계·검증·출품까지의 근거를 연결합니다.
+`053.localhostdaegu.cloud`는 localhost:daegu의 해커톤 문서와 진행 기록을 모으는 공간입니다. 서비스 기획부터 설계·검증·출품까지의 근거를 연결합니다.
 
 ## 업데이트 원칙
 

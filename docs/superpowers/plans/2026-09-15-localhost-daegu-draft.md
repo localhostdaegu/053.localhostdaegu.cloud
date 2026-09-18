@@ -1,18 +1,18 @@
-# beyondbob Jekyll Draft Implementation Plan
+# localhost:daegu Jekyll Draft Implementation Plan
 
 > **For agentic workers:** Execute the approved draft in this workspace. Use executing-plans inline; use requesting-code-review for the final read-only review. User authorization to create the draft is already recorded in the conversation.
 
-**Goal:** 세 후보 기능과 사진의 산출물 체계를 담은 실행 가능한 beyondbob Jekyll 초안을 만든다.
+**Goal:** 세 후보 기능과 사진의 산출물 체계를 담은 실행 가능한 localhost:daegu Jekyll 초안을 만든다.
 
 **Architecture:** Just the Docs의 탐색·검색을 사용한다. 문서는 Markdown, 공통 현황은 YAML, 화면은 Liquid와 CSS로 나눈다.
 
 **Tech Stack:** Jekyll 4.4.1, Just the Docs 0.12.0, Liquid, Markdown, CSS.
 
-**Spec:** `docs/superpowers/specs/2026-09-15-beyondbob-design.md`
+**Spec:** `docs/superpowers/specs/2026-09-15-localhost-daegu-design.md`
 
 ## Global Constraints
 
-- 팀: beyondbob. 장민석, 김충식, 류준. 역할·프로필은 미정.
+- 팀: localhost:daegu. 장민석, 김충식, 류준. 역할·프로필은 미정.
 - 확정 트랙: 소상공인·골목상권 디지털 금융.
 - 구현되지 않은 기능·측정되지 않은 지표를 실적으로 표시하지 않는다.
 - 원본 자료와 내부 설계 문서는 공개 빌드에서 제외한다.
@@ -32,7 +32,7 @@
 
 ## Task 3: 화면과 작성 안내
 
-- [x] `assets/css/beyondbob.css`에 반응형 홈·카드·일정·문서·칸반 스타일 작성.
+- [x] `assets/css/localhost-daegu.css`에 반응형 홈·카드·일정·문서·칸반 스타일 작성.
 - [x] 색상과 라벨이 있는 모듈 흐름도 SVG 작성.
 - [x] `README.md`에 로컬 실행·파일 구성·문서와 팀 정보 수정법 작성.
 

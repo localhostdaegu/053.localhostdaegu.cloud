@@ -9,6 +9,6 @@
     });
   }
 
-  lunr.Pipeline.registerFunction(unicodeTrimmer, "beyondbobUnicodeTrimmer");
+  lunr.Pipeline.registerFunction(unicodeTrimmer, "localhostDaeguUnicodeTrimmer");
   lunr.trimmer = unicodeTrimmer;
 })(window.lunr);

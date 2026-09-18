@@ -1,8 +1,8 @@
-# beyondbob — 대구 소상공인·골목상권 AI 프로젝트
+# localhost:daegu — 대구 소상공인·골목상권 AI 프로젝트
 
 2026 AI Blockchain Challenge in Daegu 참가 준비를 위한 Jekyll 프로젝트 허브입니다.
 
-- **팀:** beyondbob / 장민석 · 김충식 · 류준
+- **팀:** localhost:daegu / 장민석 · 김충식 · 류준
 - **트랙:** 소상공인·골목상권 디지털 금융
 - **서비스:** localhostdaegu — 창업 금융 네비게이터(청년창업 매칭 + 골목상권 AI 컨설팅, 세무·매출은 제외)
 - **역할:** 장민석 팀장·PM/아키텍트 · 김충식·류준 기능 단위 풀스택
@@ -57,7 +57,7 @@ bundle exec jekyll build --trace
 | `_data/tasks.yml` | WBS 작업·상태·담당·완료 조건 |
 | `_data/deliverables.yml` | 홈과 문서 목차가 공유하는 산출물 목록 |
 | `_layouts/`, `_includes/` | 공통 문서·기록 레이아웃과 브랜드 |
-| `assets/css/beyondbob.css` | 사이트 반응형 스타일 |
+| `assets/css/localhost-daegu.css` | 사이트 반응형 스타일 |
 | `assets/css/home.css` | 홈 전용 쇼케이스 스타일 |
 | `assets/images/neighborhood*.webp` | Blender로 제작한 골목 모형, 데스크톱·모바일용 |
 | `scripts/render-neighborhood.py` | 골목 모형 생성·렌더링 원본(Blender 5, 외부 에셋 없음). 공개 빌드 제외 |
@@ -85,7 +85,7 @@ Markdown 상단 메타데이터의 `title`, `parent`, `nav_order`, `permalink`, 
 title: 기록 제목
 date: 2026-09-15 09:00:00 +0900
 category: 개발 기록
-author: beyondbob
+author: localhost:daegu
 description: 무엇을 바꾸고 확인했는지 한 문장으로 요약
 ---
 ```
