@@ -1,37 +1,81 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 600" role="img" aria-labelledby="title desc">
-  <title id="title">localhostdaegu 시스템 흐름 — 2026-09-18 사전상담 기준</title>
-  <desc id="desc">질문과 지도 선택에서 자금계획 비교·선택, 상담자료로 이어집니다. FastAPI가 상품 조회와 계산을 처리하고, 화면 초안은 sessionStorage, 상담 기록과 상품은 PostgreSQL에 저장합니다. 기본 AI는 Gemini이며 로컬 대체 모델은 평가 완료·전환 전입니다. 배포 전 로컬 구성입니다.</desc>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 995" role="img" aria-labelledby="title desc">
+  <title id="title">localhostdaegu 모듈 중심 Data Flow — 2026-09-20 구현 대조 기준</title>
+  <desc id="desc">한 문장 질문 → 지도·상권 확인 → 비용·자금 입력 → 최초안/수정안 비교·선택 → 상담자료 생성 → Markdown 저장·인쇄 → 사용자가 iM뱅크 상담에 지참합니다. 공식 상담 경로는 링크 안내이며 은행 자동 전송·예약은 없습니다. 화면 초안은 sessionStorage, 서버 상담 기록·문서 해시는 PostgreSQL의 ORM 기준 31테이블에 저장합니다. 계산·표는 코드, 해석·질문은 AI가 담당합니다. Gemini가 기본이며 gemma4:12b 작성기와 qwen3-embedding:4b 검색 배선은 완료됐습니다. 로컬 전환은 provider 설정 변경과 해당 임베더 재색인이 필요한 수동 작업이며 자동 장애 폴백은 없습니다. 2026-09-19 첫 배포 완료 기록: 프론트 Vercel, 백엔드 Cloudflare Tunnel, DB 로컬 Docker. :3300·:8300은 로컬 포트입니다. 색상별 박스는 기능 묶음으로 개별 모듈 수와 다릅니다.</desc>
   <defs><marker id="arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0 0 10 5 0 10Z" fill="#80998b"/></marker></defs>
   <style>text{font-family:"Noto Sans KR",sans-serif;fill:#304d40} .label{font-size:14px;font-weight:600} .small{font-size:11px;fill:#667e70} .edge{fill:none;stroke:#80998b;stroke-width:1.6;marker-end:url(#arrow)} .box{stroke-width:1.2}</style>
-  <rect width="900" height="600" fill="#fff"/>
-  <text x="24" y="28" class="small" style="letter-spacing:2px">SYSTEM FLOW / CONSULTATION 2026-09-18 · LOCAL</text>
-  <rect class="box" x="60" y="55" width="220" height="66" rx="9" fill="#f3f5f0" stroke="#d3ded2"/>
-  <text class="label" x="170" y="81" text-anchor="middle">예비 창업자</text><text class="small" x="170" y="103" text-anchor="middle">한 문장 질문 · 재무 입력</text>
-  <path class="edge" d="M280 88H322"/>
-  <rect class="box" x="330" y="55" width="510" height="66" rx="9" fill="#f1f4f2" stroke="#cad7cd"/>
-  <text class="label" x="585" y="81" text-anchor="middle">프론트엔드 · Next.js (:3300)</text><text class="small" x="585" y="103" text-anchor="middle">질문 → 지도 선택 → 자금계획 비교·선택 → 상담자료 · 초안 sessionStorage</text>
-  <path class="edge" d="M585 121V162"/><text class="small" x="600" y="146">REST · SSE</text>
-  <rect class="box" x="60" y="170" width="780" height="170" rx="10" fill="#fafbf8" stroke="#d3ded2"/>
-  <text class="label" x="80" y="198">백엔드 · FastAPI (:8300)</text><text class="small" x="260" y="198">헥사고날 구조 · 기능별 bounded context</text>
-  <rect class="box" x="80" y="215" width="172" height="100" rx="9" fill="#f1f4f2" stroke="#b9c9bd"/>
-  <text class="label" x="166" y="243" text-anchor="middle">입력 해석</text><text class="small" x="166" y="266" text-anchor="middle">intent</text><text class="small" x="166" y="286" text-anchor="middle">지명·업종·예산 추출</text>
-  <rect class="box" x="270" y="215" width="172" height="100" rx="9" fill="#e8f4ed" stroke="#80bba1"/>
-  <text class="label" x="356" y="243" text-anchor="middle">상권 진단</text><text class="small" x="356" y="266" text-anchor="middle">master · store · metric</text><text class="small" x="356" y="286" text-anchor="middle">지표 · 위험도(상대 순위)</text>
-  <rect class="box" x="460" y="215" width="172" height="100" rx="9" fill="#f0ebf7" stroke="#b7a3cf"/>
-  <text class="label" x="546" y="243" text-anchor="middle">자금 계산·매칭</text><text class="small" x="546" y="266" text-anchor="middle">finance · matching · product</text><text class="small" x="546" y="286" text-anchor="middle">자금 구성 · 지역별 상담 후보</text>
-  <rect class="box" x="650" y="215" width="172" height="100" rx="9" fill="#f8f1e4" stroke="#d6b878"/>
-  <text class="label" x="736" y="243" text-anchor="middle">상담자료·지역 분석</text><text class="small" x="736" y="266" text-anchor="middle">analysis · rag · consultation</text><text class="small" x="736" y="286" text-anchor="middle">코드 계산·비교 + AI 설명</text>
-  <path class="edge" d="M210 340V382"/><text class="small" x="224" y="366">조회 · 상담 기록</text>
-  <path class="edge" d="M736 340V382"/><text class="small" x="750" y="366">해석 문단 · 임베딩</text>
-  <rect class="box" x="60" y="390" width="300" height="80" rx="9" fill="#eaf0f4" stroke="#9db5c9"/>
-  <text class="label" x="210" y="420" text-anchor="middle">PostgreSQL 17 + pgvector</text><text class="small" x="210" y="444" text-anchor="middle">원천·지표·상품·RAG · 총 29테이블</text><text class="small" x="210" y="460" text-anchor="middle">상담 세션·계획·노트·문서 해시</text>
-  <rect class="box" x="400" y="390" width="200" height="80" rx="9" fill="#f3f5f0" stroke="#d3ded2"/>
-  <text class="label" x="500" y="420" text-anchor="middle">정기 수집 (cron)</text><text class="small" x="500" y="444" text-anchor="middle">뉴스 매시 · 인허가·공고·색인 매일</text><text class="small" x="500" y="460" text-anchor="middle">금리·임대료 주 1회</text>
-  <path class="edge" d="M400 430H368"/>
-  <rect class="box" x="640" y="390" width="200" height="80" rx="9" fill="#f8f1e4" stroke="#d6b878"/>
-  <text class="label" x="740" y="420" text-anchor="middle">Gemini API (기본)</text><text class="small" x="740" y="444" text-anchor="middle">로컬 대체: gemma4 · qwen</text><text class="small" x="740" y="460" text-anchor="middle">평가 완료 · 검색 전환 작업 남음</text>
-  <rect class="box" x="400" y="510" width="440" height="62" rx="9" fill="#f1f4f2" stroke="#cad7cd"/>
-  <path class="edge" d="M500 510V478"/>
-  <text class="label" x="620" y="536" text-anchor="middle">외부 공공 데이터</text><text class="small" x="620" y="558" text-anchor="middle">인허가 · 브이월드 · R-ONE · ECOS · 기업마당 · 온통청년 · 구글 뉴스 RSS</text>
-  <text class="small" x="60" y="530">Redis·Neo4j 컨테이너는 구성돼 있으나</text><text class="small" x="60" y="548">현재 백엔드 코드에서 사용하지 않습니다.</text><text class="small" x="60" y="566">배포(localhostdaegu.cloud)는 아직 하지 않았습니다.</text>
+  <rect width="900" height="995" fill="#fff"/>
+  <text x="24" y="28" class="small" style="letter-spacing:2px">SYSTEM FLOW / CONSULTATION · 2026-09-20 구현 대조</text>
+
+  <rect class="box" x="60" y="55" width="160" height="86" rx="9" fill="#f3f5f0" stroke="#d3ded2"/>
+  <text class="label" x="140" y="88" text-anchor="middle">예비 창업자</text>
+  <text class="small" x="140" y="113" text-anchor="middle">한 문장으로 시작</text>
+  <path class="edge" d="M220 98H242"/>
+  <rect class="box" x="250" y="55" width="590" height="154" rx="9" fill="#f1f4f2" stroke="#cad7cd"/>
+  <text class="label" x="545" y="81" text-anchor="middle">프론트엔드 · Next.js (로컬 개발 :3300)</text>
+  <text class="small" x="545" y="104" text-anchor="middle">한 문장 질문 → 지도·상권 확인 → 비용·자금 입력</text>
+  <text class="small" x="545" y="125" text-anchor="middle">→ 최초안/수정안 비교·선택 → 상담자료 생성</text>
+  <text class="small" x="545" y="146" text-anchor="middle">→ Markdown 저장·인쇄 → 사용자가 iM뱅크 상담에 지참</text>
+  <text class="small" x="545" y="168" text-anchor="middle">화면 초안: sessionStorage</text>
+  <text class="small" x="545" y="190" text-anchor="middle">별도 링크: 공식 상담 경로 안내 · 은행 자동 전송·예약 없음</text>
+  <path class="edge" d="M585 209V262"/>
+  <text class="small" x="600" y="241">REST · SSE</text>
+
+  <rect class="box" x="60" y="270" width="780" height="190" rx="10" fill="#fafbf8" stroke="#d3ded2"/>
+  <text class="label" x="80" y="298">백엔드 · FastAPI (로컬 :8300)</text>
+  <text class="small" x="370" y="298">헥사고날 구조 · 기능별 bounded context</text>
+  <rect class="box" x="80" y="315" width="172" height="114" rx="9" fill="#f1f4f2" stroke="#b9c9bd"/>
+  <text class="label" x="166" y="342" text-anchor="middle">입력 해석</text>
+  <text class="small" x="166" y="366" text-anchor="middle">intent</text>
+  <text class="small" x="166" y="408" text-anchor="middle">지명·업종·예산 추출</text>
+  <rect class="box" x="270" y="315" width="172" height="114" rx="9" fill="#e8f4ed" stroke="#80bba1"/>
+  <text class="label" x="356" y="342" text-anchor="middle">상권 진단</text>
+  <text class="small" x="356" y="366" text-anchor="middle">master · store · metric</text>
+  <text class="small" x="356" y="386" text-anchor="middle">dataset · indicator: 동네 특성</text>
+  <text class="small" x="356" y="408" text-anchor="middle">지표 · 위험도(상대 순위)</text>
+  <rect class="box" x="460" y="315" width="172" height="114" rx="9" fill="#f0ebf7" stroke="#b7a3cf"/>
+  <text class="label" x="546" y="342" text-anchor="middle">자금 계산·매칭</text>
+  <text class="small" x="546" y="366" text-anchor="middle">finance · matching · product</text>
+  <text class="small" x="546" y="408" text-anchor="middle">자금 구성 · 지역별 상담 후보</text>
+  <rect class="box" x="650" y="315" width="172" height="114" rx="9" fill="#f8f1e4" stroke="#d6b878"/>
+  <text class="label" x="736" y="342" text-anchor="middle">상담자료·지역 분석</text>
+  <text class="small" x="736" y="366" text-anchor="middle">analysis · rag · consultation</text>
+  <text class="small" x="736" y="408" text-anchor="middle">계산·비교 · 설명·확인 질문</text>
+  <text class="small" x="80" y="448">색상별 박스는 기능 묶음 ≠ 개별 모듈 수</text>
+  <text class="label" x="560" y="448">계산·표는 코드, 해석·질문은 AI</text>
+
+  <path class="edge" d="M210 460V502"/>
+  <text class="small" x="224" y="486">조회 · 상담 기록</text>
+  <path class="edge" d="M736 460V502"/>
+  <text class="small" x="750" y="486">해석 · 임베딩</text>
+  <rect class="box" x="60" y="510" width="300" height="100" rx="9" fill="#eaf0f4" stroke="#9db5c9"/>
+  <text class="label" x="210" y="538" text-anchor="middle">PostgreSQL 17 + pgvector</text>
+  <text class="small" x="210" y="560" text-anchor="middle">원천·지표·상품·RAG · ORM 기준 31테이블</text>
+  <text class="small" x="210" y="582" text-anchor="middle">상담 세션·계획·노트·문서 해시</text>
+  <text class="small" x="210" y="600" text-anchor="middle">자료 다운로드 시 선택안·sha256 기록</text>
+  <rect class="box" x="400" y="510" width="440" height="210" rx="9" fill="#f8f1e4" stroke="#d6b878"/>
+  <text class="label" x="620" y="538" text-anchor="middle">Gemini API (기본) · 해석·질문 생성 / 검색 임베딩</text>
+  <text class="small" x="620" y="566" text-anchor="middle">로컬 대체 (Ollama): gemma4:12b / qwen3-embedding:4b</text>
+  <text class="label" x="620" y="592" text-anchor="middle">로컬 작성기·검색 배선 완료, 수동 전환</text>
+  <text class="small" x="620" y="618" text-anchor="middle">provider 설정 변경 + 해당 임베더 재색인 필요</text>
+  <text class="small" x="620" y="640" text-anchor="middle">REPORT_WRITER_PROVIDER / RAG_EMBEDDING_PROVIDER</text>
+  <text class="small" x="620" y="662" text-anchor="middle">색인·질의는 같은 임베더 사용</text>
+  <text class="small" x="620" y="696" text-anchor="middle">자동 장애 폴백 없음</text>
+
+  <path class="edge" d="M210 650V618"/>
+  <text class="small" x="224" y="635">적재 · 색인 갱신</text>
+  <rect class="box" x="60" y="650" width="300" height="70" rx="9" fill="#f3f5f0" stroke="#d3ded2"/>
+  <text class="label" x="210" y="674" text-anchor="middle">정기 수집 (cron)</text>
+  <text class="small" x="210" y="694" text-anchor="middle">뉴스 매시 · 인허가·공고·색인 매일</text>
+  <text class="small" x="210" y="711" text-anchor="middle">금리·임대료 주 1회</text>
+  <path class="edge" d="M210 760V728"/>
+  <rect class="box" x="60" y="760" width="780" height="66" rx="9" fill="#f1f4f2" stroke="#cad7cd"/>
+  <text class="label" x="450" y="787" text-anchor="middle">외부 공공 데이터</text>
+  <text class="small" x="450" y="809" text-anchor="middle">인허가 · 브이월드 · R-ONE · ECOS · 기업마당 · 온통청년 · 구글 뉴스 RSS</text>
+  <text class="small" x="60" y="852">Redis·Neo4j는 컨테이너 구성만 있으며 현재 백엔드에서 미사용</text>
+
+  <rect class="box" x="60" y="878" width="780" height="94" rx="9" fill="#f3f5f0" stroke="#d3ded2"/>
+  <text class="label" x="80" y="903">운영 배포 경로 · 2026-09-19 첫 배포 완료 기록</text>
+  <text class="small" x="80" y="927">프론트 Vercel → API: Cloudflare Tunnel → 로컬 FastAPI → DB 로컬 Docker</text>
+  <text class="small" x="80" y="948">localhostdaegu.cloud → api.localhostdaegu.cloud → 로컬 :8300 (백엔드)</text>
+  <text class="small" x="80" y="964">로컬 개발: Next.js :3300 → FastAPI :8300 · 위 도식은 현재 코드 기준이며 최신 프론트 재배포는 별도</text>
 </svg>

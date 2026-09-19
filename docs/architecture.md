@@ -16,7 +16,7 @@ owner: 담당 장민석 · PM/아키텍트
 
 ## 모듈 중심 Data Flow
 
-<div class="diagram-frame"><img src="{{ '/assets/images/architecture.svg' | relative_url }}" alt="예비 창업자의 질문과 자금계획을 Next.js와 FastAPI가 처리해 계산안 비교와 상담자료로 연결합니다. 상품·상담 기록은 PostgreSQL에 저장하고, Gemini가 해석하며 로컬 대체 모델은 평가를 마친 상태입니다."><p class="diagram-caption">2026-09-18 사전상담 후속 작업 기준 · 로컬 구성. 색상은 기능 묶음, 화살표는 요청·조회·적재 방향입니다.</p></div>
+<div class="diagram-frame"><img src="{{ '/assets/images/architecture.svg' | relative_url }}" alt="한 문장 질문 → 지도·상권 확인 → 비용·자금 입력 → 최초안/수정안 비교·선택 → 상담자료 생성 → Markdown 저장·인쇄 → 사용자가 iM뱅크 상담에 지참합니다. 공식 상담 경로는 링크 안내이며 은행 자동 전송·예약은 없습니다. Next.js와 FastAPI는 REST·SSE로 연결되며 화면 초안은 sessionStorage, 서버 상담 기록·문서 해시는 PostgreSQL의 ORM 기준 31테이블에 저장합니다. 상권 진단에는 dataset·indicator의 동네 특성 지표를 포함합니다. 계산·표는 코드, 해석·질문은 AI가 담당합니다. Gemini가 기본이며 로컬 gemma4:12b·qwen3-embedding:4b 작성기·검색 배선은 완료됐습니다. 로컬 전환은 provider 설정 변경과 해당 임베더 재색인이 필요한 수동 작업이며 자동 장애 폴백은 없습니다. 2026-09-19 첫 배포 경로는 프론트 Vercel·백엔드 Cloudflare Tunnel·DB 로컬 Docker이며 :3300·:8300은 로컬 포트입니다."><p class="diagram-caption">2026-09-20 서비스 설계서·ORM·provider 설정·프론트 흐름 대조 기준. 2026-09-19 첫 배포 기록과 로컬 개발 구성을 구분했습니다. 색상별 박스는 기능 묶음으로 개별 모듈 수와 다르며, 화살표는 사용자 동선·요청·조회·적재 방향입니다.</p></div>
 
 1. 사용자가 채팅 첫 화면에 한 문장을 입력하면 백엔드가 구·동·랜드마크, 업종, 예산을 추출합니다.
 2. 지도 화면이 해당 행정동을 보여 주고, 행정동 × 업종 지표와 위험도를 조회합니다.
