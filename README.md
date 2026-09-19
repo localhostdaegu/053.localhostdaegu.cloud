@@ -66,7 +66,7 @@ bundle exec jekyll build --trace
 
 ## 팀 프로필 수정
 
-`_data/team.yml`에서 각 팀원의 `role`, `description`, `profile_status`를 수정합니다. 선택 항목 `bio`, `github`를 추가하면 팀 페이지에 표시됩니다. 사진 기능은 프로필을 받은 뒤 추가할 수 있습니다. 근거 없는 역할이나 경력을 채우지 않습니다.
+`_data/team.yml`에서 각 팀원의 `role`, `description`를 수정합니다. 선택 항목 `bio`, `github`를 추가하면 팀 페이지에 표시됩니다. 사진 기능은 필요하면 추가할 수 있습니다. 근거 없는 역할이나 경력을 채우지 않습니다.
 
 ## 문서 수정
 

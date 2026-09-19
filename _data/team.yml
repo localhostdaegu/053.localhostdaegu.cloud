@@ -2,14 +2,11 @@
   initials: 민석
   role: 팀장 · PM/아키텍트
   description: "API 계약과 배포 구조, 범위·우선순위와 PR 리뷰·병합 승인을 맡고, 제안요약서·시연 대본·제출 서류와 접수를 담당합니다."
-  profile_status: 프로필 준비 중
 - name: 김충식
   initials: 충식
   role: 풀스택
   description: "기간 일치(지도 선택 연도 → AI 분석)와 AI 진행 표시를 백엔드부터 프론트엔드까지 맡고, 백엔드 배포와 시연 영상 녹화·편집을 담당합니다."
-  profile_status: 프로필 준비 중
 - name: 류준
   initials: 류준
   role: 풀스택
   description: "자금 점검 동선·계산 가정 표시와 데이터 신뢰 표시(지표의 분모·기간·건수)를 백엔드부터 프론트엔드까지 맡고, 프론트엔드 배포와 여력 시 공공데이터 적재를 담당합니다."
-  profile_status: 프로필 준비 중

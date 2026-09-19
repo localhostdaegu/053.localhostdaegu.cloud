@@ -8,10 +8,10 @@ description: 작은 가게와 새로운 시작을 위한 문제를 함께 찾고
 status: 팀 구성·역할 분담 확정
 owner: 담당 localhost:daegu 공동
 ---
-<div class="team-grid">{% for member in site.data.team %}<article class="member-card"><div class="member-avatar" aria-hidden="true">{{ member.initials }}</div><h2>{{ member.name }}</h2><span class="status-pill">{{ member.role }}</span><p>{{ member.description }}</p><small>{{ member.profile_status }}</small>{% if member.bio %}<p>{{ member.bio }}</p>{% endif %}{% if member.github %}<p><a href="{{ member.github | escape }}">GitHub ↗</a></p>{% endif %}</article>{% endfor %}</div>
+<div class="team-grid">{% for member in site.data.team %}<article class="member-card"><div class="member-avatar" aria-hidden="true">{{ member.initials }}</div><h2>{{ member.name }}</h2><span class="status-pill">{{ member.role }}</span><p>{{ member.description }}</p>{% if member.bio %}<p>{{ member.bio }}</p>{% endif %}{% if member.github %}<p><a href="{{ member.github | escape }}">GitHub ↗</a></p>{% endif %}</article>{% endfor %}</div>
 <h2>역할 분담 원칙</h2>
 <p>2026년 9월 18일에 접수까지의 역할을 정했습니다. 장민석(팀장)은 API 계약·배포 구조·범위와 우선순위·리뷰·제출을 맡고, 김충식·류준은 기능 하나를 백엔드부터 프론트엔드까지 끝까지 맡습니다.</p>
 <ul><li>API 계약을 먼저 확정한 뒤 기능별 브랜치 → PR → 팀장 승인 → main 순서로 합칩니다.</li><li>같은 분석 API를 건드리는 기간 일치·AI 진행 표시는 한 사람(김충식)이 맡아 충돌을 피합니다.</li><li>코드 프리즈는 9월 19일 18:00, 접수는 9월 20일 오후가 목표입니다.</li></ul>
 <p><a href="{{ '/progress/' | relative_url }}">기능별 작업 상태 →</a> · <a href="{{ '/decisions/' | relative_url }}">DEC-015 결정 기록 →</a></p>
 <h2>우리의 기록 방식</h2>
-<ul><li>결정에는 이유와 영향을 함께 남깁니다.</li><li>구현한 내용과 계획을 구분합니다.</li><li>검증 결과에는 환경과 근거를 연결합니다.</li><li>프로필이 준비되면 이 페이지에 반영합니다.</li></ul>
+<ul><li>결정에는 이유와 영향을 함께 남깁니다.</li><li>구현한 내용과 계획을 구분합니다.</li><li>검증 결과에는 환경과 근거를 연결합니다.</li></ul>
