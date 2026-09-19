@@ -24,7 +24,7 @@ owner: 담당 localhost:daegu 공동
 ## 기준 자료
 
 - 팀이 제공한 `2026_AI_Blockchain_Challenge_Daegu.md`
-- 서비스 저장소 작업 기록 `jekyll.md` 사본(2026-09-18 동기화)과 인수인계 문서의 진행 현황·팀 분담
+- 서비스 저장소 작업 기록 `jekyll.md` 사본(2026-09-19 동기화)과 인수인계 문서의 진행 현황·팀 분담
 - 프로젝트 개발 산출물 목차 이미지 3장
 - [해커톤 공식 안내](https://www.im-challenge.com/)
 

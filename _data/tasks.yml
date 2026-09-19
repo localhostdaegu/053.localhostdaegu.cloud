@@ -66,16 +66,16 @@
   url: /journal/2026/09/18/consultation-handoff-model-eval/
 - id: WBS-013
   title: "④ 데이터 신뢰 표시"
-  status: 예정
+  status: 완료
   assignee: 류준
-  output: "카페 단기 개폐업 검증과 지표별 분모·기간·건수·해석 문구 표시"
-  url: /progress/
+  output: "폐업률·증감률 카드에 분모 설명, 30일 규칙 반영(DEC-023), 상대 순위 표기(DEC-024), 학원·부동산·어린이집 \"폐업률(추정)\" 라벨, 편의점 \"담배소매인 기준\" 표기"
+  url: /journal/2026/09/19/deploy-persona-metrics/
 - id: WBS-014
   title: "⑤ localhostdaegu.cloud 배포"
-  status: 예정
+  status: 완료
   assignee: "김충식(BE) · 류준(FE)"
-  output: "구조 확정(Vercel + Cloudflare Tunnel)·가이드·CORS 환경변수화까지 완료. 네임서버 이전과 배포 실행이 남음"
-  url: /docs/architecture/
+  output: "9/19 첫 배포: 네임서버 Cloudflare 이전, 백엔드 Cloudflare Tunnel(api.localhostdaegu.cloud), 프론트 Vercel(Git 연동 자동 배포). 마지막 5개 커밋은 미푸시"
+  url: /journal/2026/09/19/deploy-persona-metrics/
 - id: WBS-015
   title: "⑦ 시연 영상"
   status: 예정
@@ -90,10 +90,10 @@
   url: /showcase/
 - id: WBS-016
   title: "⑥ 공공데이터 적재(여력 시)"
-  status: 예정
+  status: 완료
   assignee: 류준
-  output: "전통시장(브이월드 API)·나들가게(파일) 적재, 나머지 3종은 마감 후"
-  url: /journal/2026/09/18/final-review-team-split/
+  output: "9/19 공공데이터 5종 적재·지도 패널 동네 특성 배지로 표시(WBS-026과 동일 작업)"
+  url: /journal/2026/09/19/deploy-persona-metrics/
 - id: WBS-017
   title: 대구 빅데이터활용센터 데이터 이용·반출 조건 확인
   status: 논의 중
@@ -102,10 +102,10 @@
   url: /decisions/
 - id: WBS-018
   title: 로그에 기록된 외부 API 키 재발급
-  status: 예정
+  status: 완료
   assignee: 장민석(키 관리)
-  output: "키 재발급·교체 후 다음 정기 수집에서 정상 동작 확인"
-  url: /journal/2026/09/18/final-review-team-split/
+  output: "9/19 밤 청년정책 API 키 재발급·교체, 단건 200·수집기 정상 종료 확인"
+  url: /journal/2026/09/19/deploy-persona-metrics/
 - id: WBS-019
   title: 창업자금 사전상담 전환(T1~T7)과 상담 세션 서버 기록
   status: 완료
@@ -138,19 +138,43 @@
   url: /docs/model-evaluation/
 - id: WBS-024
   title: 단기 폐업(30일 이내 종료) 집계 제외 반영
-  status: 예정
+  status: 완료
   assignee: 류준
-  output: "DEC-023에 따라 폐업률·위험도 집계에서 개업 30일 이내 종료 건 제외, 화면 수치 재검증"
-  url: /decisions/
+  output: "9/19 반영: 개업 30일 이내 종료 제외. 2025년 개업 5,755→4,780·폐업 6,259→5,301, 폐업률 100% 초과 동 2→0"
+  url: /journal/2026/09/19/deploy-persona-metrics/
 - id: WBS-025
   title: 위험 점수 상대 순위 표기
-  status: 예정
+  status: 완료
   assignee: 장민석
-  output: "DEC-024에 따라 위험 점수를 행정동 간 상대 순위로 표기하고 분모·기간·건수 문구 확정"
-  url: /decisions/
+  output: "9/19 반영: \"상대 위험 높음/중간/낮음\" + 142개 동 가운데 순위 표기, 실패 확률이 아님을 명시"
+  url: /journal/2026/09/19/deploy-persona-metrics/
 - id: WBS-026
   title: 공공데이터 5종 행정동 지표 적재
   status: 완료
   assignee: 김충식
   output: "전통시장·나들가게·백년가게·온누리 가맹점·도시철도 승차를 external_dataset/regional_indicator에 적재(9/19). 화면 노출은 미배선"
   url: /journal/2026/09/18/consultation-handoff-model-eval/
+- id: WBS-027
+  title: 미연결 데이터 화면 연결과 내부 화면 다듬기
+  status: 완료
+  assignee: 김충식
+  output: "인구·동네 특성·지하철·충격 이벤트·R-ONE 월세 도우미 연결, 사전상담 2단·자금 그래프·금리 표, 지도 추이 차트, 동 이름 표기"
+  url: /journal/2026/09/19/deploy-persona-metrics/
+- id: WBS-028
+  title: 운영 사이트 페르소나 테스트 10명과 후속 개선 18건
+  status: 완료
+  assignee: 김충식
+  output: "운영 주소에서 10/10 상담자료 도달, 결함 7건 발견 → 18건 수정 후 재실행 10/10·마찰 0건"
+  url: /journal/2026/09/19/deploy-persona-metrics/
+- id: WBS-029
+  title: SGIS 지오코딩과 지표 업종 11종 연결
+  status: 완료
+  assignee: 김충식
+  output: "학원·부동산 좌표 채움, 인허가 좌표 없음 5,547건 중 3,232건 변환, 담배소매업 33,804건 적재로 편의점(담배소매인 기준)·어린이집 지표 연결 → 12,360행·11업종. 브이월드 저장 결과는 SGIS로 교체"
+  url: /journal/2026/09/19/deploy-persona-metrics/
+- id: WBS-030
+  title: 배포 갱신·시연 영상·9/20 접수
+  status: 예정
+  assignee: "김충식(푸시·영상) · 장민석(접수)"
+  output: "미푸시 커밋 5건 반영, 백엔드 환경변수(NEIS·어린이집·SGIS) 배포 설정, 시연 영상 녹화, 제안요약서 건수 재갱신 후 접수"
+  url: /journal/2026/09/19/deploy-persona-metrics/
