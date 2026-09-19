@@ -20,6 +20,9 @@
 .landing-text-link { display: inline-flex; align-items: center; gap: 17px; color: #214c41; min-height: 44px; font-size: 13px; font-weight: 550; }
 .landing-text-link:hover { color: #0c8056; }
 .main-content .landing .landing-project-note { margin: 17px 0 0; color: #66776e; font-size: 11px; line-height: 1.8; }
+.landing-project-links { display: flex; flex-direction: column; align-items: flex-start; gap: 4px; margin-top: 8px; }
+.landing-project-links > a { display: inline-flex; align-items: center; gap: 12px; min-height: 44px; padding: 8px 0; color: #214c41; font-size: 16px; font-weight: 600; line-height: 1.5; }
+.landing-project-links > a:hover { color: #0c8056; text-decoration: underline; text-underline-offset: 4px; }
 .neighborhood-scene { margin: 0; position: relative; min-width: 0; padding: 26px 0 28px; isolation: isolate; }
 .neighborhood-scene picture { display: block; position: relative; width: 116%; margin-left: -9%; }
 .neighborhood-scene img { display: block; width: 100%; height: auto; filter: drop-shadow(0 20px 16px #183b2910); }
