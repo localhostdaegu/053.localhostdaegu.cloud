@@ -1,5 +1,5 @@
 updated: "2026-09-19"
-phase: 프로토타입 보완·배포·접수 준비
+phase: 첫 배포 완료·최신 변경 반영·접수 준비
 track: 소상공인·골목상권 디지털 금융
 topics:
   - number: "01"
@@ -21,7 +21,7 @@ topics:
     label: LOCAL INSIGHT
     color: amber
     question: "우리 골목의 변화를 다음 결정에 활용할 수 있을까?"
-    description: 인허가 이력으로 행정동별 개폐업 지표와 위험도를 보여 주고, AI 리포트가 공고·뉴스 근거와 함께 해석합니다. 지표 해석 표시는 보완 중입니다.
+    description: 인허가 이력으로 행정동별 개폐업 지표와 위험도를 보여 주고, AI 리포트가 공고·뉴스 근거와 함께 해석합니다. 30일 이내 종료 제외·상대 순위·추정 라벨을 반영했고, 11개 업종 지표를 연결했습니다.
     requirement: REQ-003
 milestones:
   - date: "09.15 — 09.20"

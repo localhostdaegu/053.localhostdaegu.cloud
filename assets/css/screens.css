@@ -9,6 +9,7 @@
 .screen-figure a{display:block;line-height:0}
 .screen-figure a:focus-visible{outline-offset:-4px}
 .screen-figure img{display:block;width:100%;height:auto}
+.screen-figure-mobile{max-width:390px;margin-left:auto;margin-right:auto}
 .screen-figure figcaption{padding:12px 16px;border-top:1px solid var(--bb-line);font-size:11px;color:var(--bb-muted);line-height:1.8}
 .screen-takeaway{padding:15px 18px;border-left:3px solid var(--bb-accent);background:#eef5ef;font-size:14px}
 .screen-comparison{overflow-x:auto;margin:20px 0}

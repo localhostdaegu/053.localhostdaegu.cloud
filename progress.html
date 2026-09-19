@@ -7,9 +7,12 @@ description: 이번 단계의 목표와 다음 마일스톤, 함께 결정할 �
 status: 프로토타입 보완·배포·접수 준비
 owner: 담당 장민석 · PM
 ---
-<div class="notice"><strong>이번 단계의 목표</strong><br>프로토타입은 실제 데이터로 완주했고 백엔드 최종 리뷰를 마쳤습니다. 9월 20일 접수 전까지 데이터 해석의 신뢰도를 보완하고, localhostdaegu.cloud에 배포하고, 시연 영상과 제출 서류를 준비합니다. 기능별 담당은 9월 18일에 정했습니다.</div>
+<div class="notice"><strong>이번 단계의 목표</strong><br>9월 19일 첫 배포와 운영 주소의 페르소나 10건 검증, AI 진행 안내·데이터 신뢰 표시, 11개 업종 지표 연결을 마쳤습니다. 최신 프론트 변경 배포, 시연 영상과 제출 서류 마무리, 9월 20일 접수는 남아 있습니다. 기준은 9월 19일 밤 작업 로그입니다.</div>
 <h2>9월 — 10월 로드맵</h2>
 <div class="timeline">{% for item in site.data.project.milestones %}<div class="timeline-item"><div class="timeline-date">{{ item.date }}</div><div class="timeline-body"><h3>{{ item.title }}</h3><span class="status-pill">{{ item.kind }}</span><p>{{ item.description }}</p></div></div>{% endfor %}</div>
+<h2>이번에 완료로 정리한 작업</h2>
+<ul><li><strong>WBS-009 · API 계약·배포 구조 확정:</strong> 연도·재무·상담 API와 지표 분모 설명을 반영하고 Vercel + Cloudflare Tunnel 첫 배포를 완료했습니다.</li><li><strong>WBS-011 · AI 진행 표시:</strong> 입력 확인·지역 근거·자금 계산·상담 후보 정리로 안내하고 RAG·스코어 같은 내부 용어를 정리했습니다.</li><li><strong>기존 완료 항목의 후속 반영:</strong> 공공데이터 5종의 지도 배선, API 키 교체, 30일 집계 규칙·상대 순위 표기, 11업종 지표 연결을 완료 상태와 함께 기록했습니다.</li></ul>
+<p>완료 근거: <a href="{{ '/journal/2026/09/19/deploy-persona-metrics/' | relative_url }}">9월 19일 개발 기록</a>. 시연 영상·최종 접수·평가셋 검수는 예정으로 유지합니다.</p>
 <h2>팀 작업 보드</h2>
 <p>완료 조건을 충족한 작업만 완료로 옮깁니다. 완료 표시는 기능 구현과 당시 테스트 결과를 뜻하며, 분석의 실효성까지 검증했다는 뜻은 아닙니다.</p>
 <div class="board">

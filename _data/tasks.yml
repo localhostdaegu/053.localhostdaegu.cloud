@@ -32,7 +32,7 @@
   title: 정상·오류 시나리오 검증
   status: 완료
   assignee: 팀 공동
-  output: "원본 작업 로그의 마지막 전체 실행은 백엔드 472 통과·1 건너뜀, 프론트엔드 203/40 files. 사전상담·AI 분석 E2E 통과(9/18 후속 과제). 모델 평가 후 전체 수치는 별도 확인"
+  output: "9/19 밤 원본 로그: 백엔드 603 통과·1 건너뜀, 프론트엔드 226/46 files·타입 검사 통과. 운영 페르소나 10/10, 개선 후 로컬 10/10·마찰 0건"
   url: /docs/testing/
 - id: WBS-008
   title: 백엔드 최종 리뷰와 main 병합
@@ -42,10 +42,10 @@
   url: /journal/2026/09/18/final-review-team-split/
 - id: WBS-009
   title: API 계약·배포 구조 확정
-  status: 예정
+  status: 완료
   assignee: 장민석
-  output: "연도·재무·상담 API와 배포 구성은 반영 완료. 지표 분모·기간·건수의 남은 계약 합의는 WBS-013과 연결해 진행"
-  url: /decisions/
+  output: "9/19 완료: 연도·재무·상담 API와 지표 분모 설명 반영. Vercel + Cloudflare Tunnel 첫 배포·운영 SSE 검증 완료(WBS-013·014)"
+  url: /journal/2026/09/19/deploy-persona-metrics/
 - id: WBS-010
   title: "① 기간 일치"
   status: 완료
@@ -54,10 +54,10 @@
   url: /journal/2026/09/18/consultation-handoff-model-eval/
 - id: WBS-011
   title: "② AI 진행 표시"
-  status: 예정
+  status: 완료
   assignee: 김충식
-  output: "입력 확인 → 주변 현황 → 자금 계산 → 상담 후보처럼 실제 수행 작업으로 진행 안내"
-  url: /progress/
+  output: "9/19 완료: 입력 확인·지역 근거·자금 계산·상담 후보 정리 등 수행 작업으로 진행 안내. RAG·스코어 내부 용어 제거, 페르소나 후속 검증 반영"
+  url: /journal/2026/09/19/deploy-persona-metrics/
 - id: WBS-012
   title: "③ 자금 점검 동선·계산 가정 표시"
   status: 완료
@@ -152,7 +152,7 @@
   title: 공공데이터 5종 행정동 지표 적재
   status: 완료
   assignee: 김충식
-  output: "전통시장·나들가게·백년가게·온누리 가맹점·도시철도 승차를 external_dataset/regional_indicator에 적재(9/19). 화면 노출은 미배선"
+  output: "9/19 공공데이터 5종 적재 완료. 같은 날 지도 패널에 동네 특성 배지·도시철도 시간대별 승차 연결 완료(WBS-027)"
   url: /journal/2026/09/18/consultation-handoff-model-eval/
 - id: WBS-027
   title: 미연결 데이터 화면 연결과 내부 화면 다듬기

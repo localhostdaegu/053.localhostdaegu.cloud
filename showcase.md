@@ -13,11 +13,11 @@ owner: 담당 장민석 · PM/아키텍트
 
 ## 6. 출품 시나리오
 
-사전상담 시연 대본과 제안요약서·참가신청서 개정안을 작성했습니다. 프로토타입은 실백엔드로 완주했지만 배포와 시연 영상은 아직 없습니다. 발표 PPT는 목차 초안이며, 준비된 제출 파일과 영상은 추후 연결합니다.
+사전상담 시연 대본과 제안요약서·참가신청서 개정안을 작성했습니다. 9월 19일 첫 배포와 운영 주소의 페르소나 10건 검증을 마쳤습니다. 최신 변경 재배포와 시연 영상은 남아 있습니다. 발표 PPT는 목차 초안이며, 준비된 제출 파일과 영상은 추후 연결합니다.
 
 ## 개발 개요·목적·기능
 
-<a class="doc-link" href="{{ '/showcase/screens/' | relative_url }}">구현 화면 살펴보기 → <span>실제 화면 4장으로 보는 창업 조건 입력부터 상담자료까지의 흐름</span></a>
+<a class="doc-link" href="{{ '/showcase/screens/' | relative_url }}">구현 화면 살펴보기 → <span>최신 화면 8장으로 보는 창업 조건 입력부터 상담자료까지의 흐름</span></a>
 
 **localhostdaegu는 계약을 검토하는 대구 예비 창업자의 자금계획 비교와 사전상담 준비를 돕습니다.** 한 문장 질문 → 자리 선택 → 자금 계산·조건 변경 비교 → 계획 선택 → 상담자료·공식 안내로 이어집니다. 구현 범위는 [요구사항 정의서]({{ '/docs/requirements/' | relative_url }})를 따릅니다.
 
@@ -59,11 +59,11 @@ owner: 담당 장민석 · PM/아키텍트
 | 제안요약서 | 초안 작성(`docs/proposal-summary.md`) · 검토 장민석 |
 | 발표 PPT | 목차 초안 |
 | 서비스 구현 코드 | 사전상담 전환(T1~T7)까지 완료 · 코드 프리즈 해제(DEC-018) |
-| 데모 주소(localhostdaegu.cloud) | 구조 확정(Vercel + Cloudflare Tunnel)·가이드 작성 · 배포 실행 전 · 김충식(BE)·류준(FE) |
-| 구현 화면 | [실제 화면 4장과 사용 흐름]({{ '/showcase/screens/' | relative_url }}) 공개 · 9/19 로컬 실백엔드 캡처 자료 |
+| 데모 주소(localhostdaegu.cloud) | [서비스 열기](https://localhostdaegu.cloud) · 9/19 첫 배포(Vercel + Cloudflare Tunnel) · 최신 프론트 변경 재배포 준비 |
+| 구현 화면 | [최신 화면 8장과 사용 흐름]({{ '/showcase/screens/' | relative_url }}) 공개 · 9/19 밤 로컬 프론트·실백엔드 재촬영 |
 | 시연 영상 | 시연 대본 작성(`docs/demo-script.md`, 수치 재검산) · 영상 미착수 · 김충식 |
-| 테스트·검수 결과 | 원본 로그의 마지막 전체 실행: 백엔드 472 통과·1 건너뜀, 프론트엔드 203 통과(9/18 후속 과제 완료 시점), 실백엔드 깔때기·AI 분석 E2E 통과. 모델 평가 후 전체 수치·배포 검수는 별도 확인 필요 |
+| 테스트·검수 결과 | 9/19 밤 원본 로그: 백엔드 603 통과·1 건너뜀, 프론트엔드 226 통과(46 files)·타입 검사 통과. 운영 페르소나 10/10·개선 후 로컬 10/10. 최종 제출 버전 재검수는 남음 |
 
-데모와 파일이 준비되면 이 페이지에 링크를 추가합니다. 현재 동작하는 데모를 가리키는 링크는 등록하지 않았습니다.
+[서비스 실행](https://localhostdaegu.cloud) · [GitHub 소스](https://github.com/localhostdaegu/cloud.localhostdaegu). 제출 파일과 시연 영상은 준비 후 연결합니다.
 
 표의 `docs/proposal-summary.md`·`docs/demo-script.md`와 배포 런북 `docs/deploy-runbook.md`, 참가신청서 `docs/application_form.md`는 **서비스 저장소 경로**입니다. 이 문서 사이트에는 작성 현황과 요약만 옮겼으며 원본 파일은 포함하지 않았습니다.

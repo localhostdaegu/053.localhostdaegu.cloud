@@ -12,7 +12,7 @@
   title: 상위 설계서
   description: 모듈, 데이터 흐름, AI와 외부 서비스의 연결
   url: /docs/architecture/
-  status: 구현 기준 · 배포 전
+  status: 첫 배포·11업종 반영
 - number: "04"
   title: 상세 설계서
   description: 실제 구현을 근거로 남기는 동작과 인터페이스
@@ -22,12 +22,12 @@
   title: 시나리오 테스트
   description: 단위부터 통합까지, 기대 결과와 실측 근거
   url: /docs/testing/
-  status: 로컬 실행 결과
+  status: 로컬·운영 실행 결과
 - number: "5.1"
   title: 최종 검수
   description: 설치, 설정, 환경 이전과 유지보수
   url: /docs/acceptance/
-  status: 배포 검수 전
+  status: 첫 배포 검증·최종 검수 준비
 - number: "06"
   title: 출품 시나리오
   description: 문제에서 데모까지 이어지는 발표의 흐름

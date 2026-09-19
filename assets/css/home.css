@@ -160,6 +160,7 @@
   .comparison-insight .reserve-label { display: none; }
 }
 @media (max-width: 850px) {
+  .neighborhood-scene picture { width: 109%; }
   .landing-section-heading { flex-wrap: wrap; gap: 15px; }
   .landing-section-heading > p { max-width: none; }
   .landing-section { margin-top: 64px; }

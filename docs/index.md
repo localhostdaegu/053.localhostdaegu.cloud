@@ -10,7 +10,7 @@ updated: "2026-09-19"
 owner: 담당 장민석 · PM/아키텍트
 ---
 
-<div class="notice"><strong>문서 읽는 순서</strong><br>프로젝트 개요로 방향을 확인한 뒤, 요구사항 → 상위 설계 → 상세 설계 → 테스트 → 검수 → 출품 순서로 읽어 주세요. 9월 18일 작업 로그의 사전상담 전환·상담 저장·연도 전달과 후속 검증을 반영했습니다. 코드 프리즈는 해제됐으며, 배포 환경 검증·데이터 신뢰 표시·AI 진행 표시 보완은 남아 있습니다. 날짜별 변화는 <a href="{{ '/journal/' | relative_url }}">개발 기록</a>과 <a href="{{ '/progress/' | relative_url }}">진행 현황</a>에서 확인할 수 있습니다.</div>
+<div class="notice"><strong>문서 읽는 순서</strong><br>프로젝트 개요로 방향을 확인한 뒤, 요구사항 → 상위 설계 → 상세 설계 → 테스트 → 검수 → 출품 순서로 읽어 주세요. 9월 19일 밤 작업 로그까지 반영했습니다. 첫 배포와 운영 페르소나 검증, 데이터 신뢰·AI 진행 안내, 11개 업종 지표 연결을 완료했습니다. 최신 변경 배포·시연 영상·접수는 남아 있습니다. 날짜별 변화는 <a href="{{ '/journal/' | relative_url }}">개발 기록</a>과 <a href="{{ '/progress/' | relative_url }}">진행 현황</a>에서 확인할 수 있습니다.</div>
 
 <div class="doc-links"><a class="doc-link" href="{{ '/docs/overview/' | relative_url }}">프로젝트 개요 <span>확정한 방향, 처음 검토한 세 주제, 범위 기준</span></a><a class="doc-link" href="{{ '/docs/hackathon/' | relative_url }}">해커톤 안내 <span>참가 트랙, 공식 일정, 접수 준비, 활용 데이터</span></a><a class="doc-link" href="{{ '/docs/target-industries/' | relative_url }}">타깃 업종 <span>수요 동인 4유형으로 고른 10종과 대구 지표 현황</span></a></div>
 

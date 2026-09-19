@@ -2,6 +2,7 @@ title: localhost:daegu
 description: 대구 소상공인·골목상권을 위한 AI 프로젝트. localhost:daegu의 기획, 설계, 검증과 개발 기록.
 url: "https://053.localhostdaegu.cloud"
 baseurl: ""
+service_github_url: "https://github.com/localhostdaegu/cloud.localhostdaegu"
 lang: ko
 timezone: Asia/Seoul
 theme: just-the-docs
@@ -48,6 +49,10 @@ include:
   - assets/images/screens/map.png
   - assets/images/screens/simulate.png
   - assets/images/screens/report.png
+  - assets/images/screens/map-mobile.png
+  - assets/images/screens/candidates.png
+  - assets/images/screens/childcare.png
+  - assets/images/screens/analysis.png
 
 exclude:
   - Gemfile
