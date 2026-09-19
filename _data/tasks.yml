@@ -74,19 +74,19 @@
   title: "⑤ localhostdaegu.cloud 배포"
   status: 완료
   assignee: "김충식(BE) · 류준(FE)"
-  output: "9/19 첫 배포: 네임서버 Cloudflare 이전, 백엔드 Cloudflare Tunnel(api.localhostdaegu.cloud), 프론트 Vercel(Git 연동 자동 배포). 마지막 5개 커밋은 미푸시"
+  output: "9/19 첫 배포: 네임서버 Cloudflare 이전, 백엔드 Cloudflare Tunnel(api.localhostdaegu.cloud), 프론트 Vercel(Git 연동 자동 배포). 9/20 팀 확인: 최신 변경 배포 갱신 완료"
   url: /journal/2026/09/19/deploy-persona-metrics/
 - id: WBS-015
-  title: "⑦ 시연 영상"
-  status: 예정
+  title: "⑦ 시연 자료 · 구현 화면으로 대체"
+  status: 완료
   assignee: "김충식(대본 장민석)"
-  output: "계획 입력 → 결과 이해 → 월세·투자비 변경 비교까지 보여주는 영상"
-  url: /showcase/
+  output: "9/20 팀 확인: 시연 영상은 구현 화면으로 대체. 최신 화면 8장과 사용 흐름 공개 완료"
+  url: /showcase/screens/
 - id: WBS-007
-  title: 제안요약서와 접수 자료 준비
-  status: 예정
+  title: 제안요약서 작성과 접수
+  status: 완료
   assignee: 장민석
-  output: "참가신청서 개정안·제안요약서·시연 대본 작성 완료. 서약서·개인정보 동의서의 주최 양식 확보, 최종 검토·제출과 9/20 접수 확인은 남음"
+  output: "9/20 팀 확인: 제안요약서 작성 및 대회 접수 완료"
   url: /showcase/
 - id: WBS-016
   title: "⑥ 공공데이터 적재(여력 시)"
@@ -173,8 +173,8 @@
   output: "학원·부동산 좌표 채움, 인허가 좌표 없음 5,547건 중 3,232건 변환, 담배소매업 33,804건 적재로 편의점(담배소매인 기준)·어린이집 지표 연결 → 12,360행·11업종. 브이월드 저장 결과는 SGIS로 교체"
   url: /journal/2026/09/19/deploy-persona-metrics/
 - id: WBS-030
-  title: 배포 갱신·시연 영상·9/20 접수
-  status: 예정
-  assignee: "김충식(푸시·영상) · 장민석(접수)"
-  output: "미푸시 커밋 5건 반영, 백엔드 환경변수(NEIS·어린이집·SGIS) 배포 설정, 시연 영상 녹화, 제안요약서 건수 재갱신 후 접수"
-  url: /journal/2026/09/19/deploy-persona-metrics/
+  title: 배포 갱신·구현 화면·9/20 접수 완료
+  status: 완료
+  assignee: "김충식(배포·구현 화면) · 장민석(접수)"
+  output: "9/20 팀 확인: 최신 변경 배포 갱신, 시연 영상의 구현 화면 대체, 제안요약서 작성 및 접수 완료"
+  url: /showcase/

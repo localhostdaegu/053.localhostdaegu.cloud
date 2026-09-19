@@ -27,9 +27,9 @@
   title: 최종 검수
   description: 설치, 설정, 환경 이전과 유지보수
   url: /docs/acceptance/
-  status: 첫 배포 검증·최종 검수 준비
+  status: 배포 갱신 완료·재검수 기록 필요
 - number: "06"
   title: 출품 시나리오
   description: 문제에서 데모까지 이어지는 발표의 흐름
   url: /showcase/
-  status: 구성안
+  status: 구현 화면 대체·접수 완료

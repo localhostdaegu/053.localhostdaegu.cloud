@@ -6,14 +6,14 @@ has_children: true
 permalink: /showcase/
 eyebrow: "06 / SHOWCASE"
 description: 사용자 문제에서 설계, 실제 동작과 검증 결과까지 이어지는 발표를 준비합니다.
-status: 출품 시나리오 구성안
-updated: "2026-09-19"
+status: 구현 화면 대체·제안요약서·접수 완료
+updated: "2026-09-20"
 owner: 담당 장민석 · PM/아키텍트
 ---
 
 ## 6. 출품 시나리오
 
-사전상담 시연 대본과 제안요약서·참가신청서 개정안을 작성했습니다. 9월 19일 첫 배포와 운영 주소의 페르소나 10건 검증을 마쳤습니다. 최신 변경 재배포와 시연 영상은 남아 있습니다. 발표 PPT는 목차 초안이며, 준비된 제출 파일과 영상은 추후 연결합니다.
+사전상담 시연 대본과 제안요약서·참가신청서 개정안을 작성했습니다. 9월 19일 첫 배포와 운영 주소의 페르소나 10건 검증을 마쳤습니다. 9월 20일 팀 확인 기준 최신 변경 배포 갱신과 제안요약서 작성, 대회 접수를 완료했습니다. 시연 영상은 [구현 화면]({{ '/showcase/screens/' | relative_url }})으로 대체했습니다. 발표 PPT는 목차 초안입니다.
 
 ## 개발 개요·목적·기능
 
@@ -46,7 +46,7 @@ owner: 담당 장민석 · PM/아키텍트
 5. 월세를 100만 원으로 바꿔 재계산하면 조달 필요액 2,260만 원·부족액 0원입니다. 두 안을 비교하고 상담에 쓸 안을 선택합니다. 부족액 0원이 자기자본만으로 충분하다는 뜻은 아님을 설명합니다.
 6. 상담자료의 계획·비교·계산표·후보·확인 질문·상권 근거를 보여 주고 Markdown·인쇄/PDF 저장과 공식 안내로 이어갑니다. 자료는 은행으로 자동 전송되지 않습니다.
 
-대본은 장민석, 녹화·편집은 김충식이 맡습니다.
+대본은 장민석이 작성했으며, 시연 영상은 김충식이 준비한 구현 화면으로 대체했습니다.
 
 데모에 사용하는 데이터가 샘플인지 실제 데이터인지, 외부 연동이 실제인지 모의 응답인지 함께 표시합니다.
 
@@ -54,16 +54,15 @@ owner: 담당 장민석 · PM/아키텍트
 
 | 자료 | 상태 |
 |---|---|
-| 참가신청서 | 개정안 작성(미검증 단정 제거) · 제출 전 |
-| 서약서·개인정보 동의서 | 미착수 |
-| 제안요약서 | 초안 작성(`docs/proposal-summary.md`) · 검토 장민석 |
+| 대회 접수 | 9/20 접수 완료 · 팀 확인 |
+| 제안요약서 | 작성 완료(`docs/proposal-summary.md`) · 9/20 접수 완료 |
 | 발표 PPT | 목차 초안 |
 | 서비스 구현 코드 | 사전상담 전환(T1~T7)까지 완료 · 코드 프리즈 해제(DEC-018) |
-| 데모 주소(localhostdaegu.cloud) | [서비스 열기](https://localhostdaegu.cloud) · 9/19 첫 배포(Vercel + Cloudflare Tunnel) · 최신 프론트 변경 재배포 준비 |
+| 데모 주소(localhostdaegu.cloud) | [서비스 열기](https://localhostdaegu.cloud) · 9/19 첫 배포(Vercel + Cloudflare Tunnel) · 9/20 최신 변경 배포 갱신 완료 |
 | 구현 화면 | [최신 화면 8장과 사용 흐름]({{ '/showcase/screens/' | relative_url }}) 공개 · 9/19 밤 로컬 프론트·실백엔드 재촬영 |
-| 시연 영상 | 시연 대본 작성(`docs/demo-script.md`, 수치 재검산) · 영상 미착수 · 김충식 |
-| 테스트·검수 결과 | 9/19 밤 원본 로그: 백엔드 603 통과·1 건너뜀, 프론트엔드 226 통과(46 files)·타입 검사 통과. 운영 페르소나 10/10·개선 후 로컬 10/10. 최종 제출 버전 재검수는 남음 |
+| 시연 자료 | 영상은 [구현 화면]({{ '/showcase/screens/' | relative_url }})으로 대체 완료 · 김충식 |
+| 테스트·검수 결과 | 9/19 밤 원본 로그: 백엔드 603 통과·1 건너뜀, 프론트엔드 226 통과(46 files)·타입 검사 통과. 운영 페르소나 10/10·개선 후 로컬 10/10. 최종 배포본 재검수 결과는 별도 기록 필요 |
 
-[서비스 실행](https://localhostdaegu.cloud) · [GitHub 소스](https://github.com/localhostdaegu/cloud.localhostdaegu). 제출 파일과 시연 영상은 준비 후 연결합니다.
+[서비스 실행](https://localhostdaegu.cloud) · [GitHub 소스](https://github.com/localhostdaegu/cloud.localhostdaegu). 시연 자료는 [구현 화면]({{ '/showcase/screens/' | relative_url }})에서 확인할 수 있습니다.
 
 표의 `docs/proposal-summary.md`·`docs/demo-script.md`와 배포 런북 `docs/deploy-runbook.md`, 참가신청서 `docs/application_form.md`는 **서비스 저장소 경로**입니다. 이 문서 사이트에는 작성 현황과 요약만 옮겼으며 원본 파일은 포함하지 않았습니다.
